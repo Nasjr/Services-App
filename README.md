@@ -1,4 +1,4 @@
-# ecommerce_application
+# Floder Structure for flutter projects
 
 A new Flutter project.
 
