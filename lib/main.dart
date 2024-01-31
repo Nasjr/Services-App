@@ -2,6 +2,7 @@ import 'package:ecommerce_application/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  
   // Todo: add Widgits Binding
   // Todo: Init Local Storage
   // Todo: Await Native Splash
