@@ -5,6 +5,8 @@ class MImages {
   // -- App Logos
   static const String darkAppLogo =
       "assets/logos/t-store-splash-logo-black.png";
+
+  static const String mNAppLogo = "assets/logos/SplashScreenLogo.jpg";
   static const String lightAppLogo =
       "assets/logos/t-store-splash-logo-white.png";
 

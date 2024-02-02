@@ -1,5 +1,7 @@
+import 'package:ecommerce_application/features/authentication/Onboarding/views/onboarding.dart';
 import 'package:ecommerce_application/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   // Todo: add Widgits Binding
@@ -16,12 +18,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       // customize themes
       themeMode: ThemeMode.system,
       theme: MAppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       darkTheme: MAppTheme.darkTheme,
+      home: const OnboardingScreen(),
     );
   }
 }
