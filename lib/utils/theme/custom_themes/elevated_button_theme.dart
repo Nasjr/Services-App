@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../constants/colors.dart';
 import '../../constants/sizes.dart';
 
@@ -16,10 +17,12 @@ class MElevatedButtonTheme {
       disabledBackgroundColor: MColors.buttonDisabled,
       side: const BorderSide(color: MColors.primary),
       padding: const EdgeInsets.symmetric(vertical: MSizes.buttonHeight),
-      textStyle: const TextStyle(
-          fontSize: 16, color: MColors.textWhite, fontWeight: FontWeight.w600),
+      textStyle: TextStyle(
+          fontSize: 16.sp,
+          color: MColors.textWhite,
+          fontWeight: FontWeight.w600),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MSizes.buttonRadius)),
+          borderRadius: BorderRadius.circular(MSizes.buttonRadius.w)),
     ),
   );
 
@@ -33,10 +36,12 @@ class MElevatedButtonTheme {
       disabledBackgroundColor: MColors.darkerGrey,
       side: const BorderSide(color: MColors.primary),
       padding: const EdgeInsets.symmetric(vertical: MSizes.buttonHeight),
-      textStyle: const TextStyle(
-          fontSize: 16, color: MColors.textWhite, fontWeight: FontWeight.w600),
+      textStyle: TextStyle(
+          fontSize: 16.sp,
+          color: MColors.textWhite,
+          fontWeight: FontWeight.w600),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MSizes.buttonRadius)),
+          borderRadius: BorderRadius.circular(MSizes.buttonRadius.w)),
     ),
   );
 }

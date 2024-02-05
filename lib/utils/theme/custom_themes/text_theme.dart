@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../constants/colors.dart';
 
 /// Custom Class for Light & Dark Text Themes
@@ -8,29 +9,29 @@ class MTextTheme {
   /// Customizable Light Text Theme
   static TextTheme lighTextTheme = TextTheme(
     headlineLarge: const TextStyle().copyWith(
-        fontSize: 32.0, fontWeight: FontWeight.bold, color: MColors.dark),
+        fontSize: 32.0.sp, fontWeight: FontWeight.bold, color: MColors.dark),
     headlineMedium: const TextStyle().copyWith(
-        fontSize: 24.0, fontWeight: FontWeight.w600, color: MColors.dark),
+        fontSize: 24.0.sp, fontWeight: FontWeight.w600, color: MColors.dark),
     headlineSmall: const TextStyle().copyWith(
-        fontSize: 18.0, fontWeight: FontWeight.w600, color: MColors.dark),
+        fontSize: 18.0.sp, fontWeight: FontWeight.w600, color: MColors.dark),
     titleLarge: const TextStyle().copyWith(
-        fontSize: 16.0, fontWeight: FontWeight.w600, color: MColors.dark),
+        fontSize: 16.0.sp, fontWeight: FontWeight.w600, color: MColors.dark),
     titleMedium: const TextStyle().copyWith(
-        fontSize: 16.0, fontWeight: FontWeight.w500, color: MColors.dark),
+        fontSize: 16.0.sp, fontWeight: FontWeight.w500, color: MColors.dark),
     titleSmall: const TextStyle().copyWith(
-        fontSize: 16.0, fontWeight: FontWeight.w400, color: MColors.dark),
+        fontSize: 16.0.sp, fontWeight: FontWeight.w400, color: MColors.dark),
     bodyLarge: const TextStyle().copyWith(
-        fontSize: 14.0, fontWeight: FontWeight.w500, color: MColors.dark),
+        fontSize: 14.0.sp, fontWeight: FontWeight.w500, color: MColors.dark),
     bodyMedium: const TextStyle().copyWith(
-        fontSize: 14.0, fontWeight: FontWeight.normal, color: MColors.dark),
+        fontSize: 14.0.sp, fontWeight: FontWeight.normal, color: MColors.dark),
     bodySmall: const TextStyle().copyWith(
-        fontSize: 14.0,
+        fontSize: 14.0.sp,
         fontWeight: FontWeight.w500,
         color: MColors.dark.withOpacity(0.5)),
     labelLarge: const TextStyle().copyWith(
-        fontSize: 12.0, fontWeight: FontWeight.normal, color: MColors.dark),
+        fontSize: 12.0.sp, fontWeight: FontWeight.normal, color: MColors.dark),
     labelMedium: const TextStyle().copyWith(
-        fontSize: 12.0,
+        fontSize: 12.0.sp,
         fontWeight: FontWeight.normal,
         color: MColors.dark.withOpacity(0.5)),
   );
@@ -38,29 +39,29 @@ class MTextTheme {
   /// Customizable Dark Text Theme
   static TextTheme darkTextTheme = TextTheme(
     headlineLarge: const TextStyle().copyWith(
-        fontSize: 32.0, fontWeight: FontWeight.bold, color: MColors.light),
+        fontSize: 32.0.sp, fontWeight: FontWeight.bold, color: MColors.light),
     headlineMedium: const TextStyle().copyWith(
-        fontSize: 24.0, fontWeight: FontWeight.w600, color: MColors.light),
+        fontSize: 24.0.sp, fontWeight: FontWeight.w600, color: MColors.light),
     headlineSmall: const TextStyle().copyWith(
-        fontSize: 18.0, fontWeight: FontWeight.w600, color: MColors.light),
+        fontSize: 18.0.sp, fontWeight: FontWeight.w600, color: MColors.light),
     titleLarge: const TextStyle().copyWith(
-        fontSize: 16.0, fontWeight: FontWeight.w600, color: MColors.light),
+        fontSize: 16.0.sp, fontWeight: FontWeight.w600, color: MColors.light),
     titleMedium: const TextStyle().copyWith(
-        fontSize: 16.0, fontWeight: FontWeight.w500, color: MColors.light),
+        fontSize: 16.0.sp, fontWeight: FontWeight.w500, color: MColors.light),
     titleSmall: const TextStyle().copyWith(
-        fontSize: 16.0, fontWeight: FontWeight.w400, color: MColors.light),
+        fontSize: 16.0.sp, fontWeight: FontWeight.w400, color: MColors.light),
     bodyLarge: const TextStyle().copyWith(
-        fontSize: 14.0, fontWeight: FontWeight.w500, color: MColors.light),
+        fontSize: 14.0.sp, fontWeight: FontWeight.w500, color: MColors.light),
     bodyMedium: const TextStyle().copyWith(
-        fontSize: 14.0, fontWeight: FontWeight.normal, color: MColors.light),
+        fontSize: 14.0.sp, fontWeight: FontWeight.normal, color: MColors.light),
     bodySmall: const TextStyle().copyWith(
-        fontSize: 14.0,
+        fontSize: 14.0.sp,
         fontWeight: FontWeight.w500,
         color: MColors.light.withOpacity(0.5)),
     labelLarge: const TextStyle().copyWith(
-        fontSize: 12.0, fontWeight: FontWeight.normal, color: MColors.light),
+        fontSize: 12.0.sp, fontWeight: FontWeight.normal, color: MColors.light),
     labelMedium: const TextStyle().copyWith(
-        fontSize: 12.0,
+        fontSize: 12.0.sp,
         fontWeight: FontWeight.normal,
         color: MColors.light.withOpacity(0.5)),
   );

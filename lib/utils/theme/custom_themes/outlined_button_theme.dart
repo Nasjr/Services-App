@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/sizes.dart';
@@ -13,12 +14,12 @@ class MOutlinedButtonTheme {
       elevation: 0,
       foregroundColor: MColors.dark,
       side: const BorderSide(color: MColors.borderPrimary),
-      textStyle: const TextStyle(
-          fontSize: 16, color: MColors.black, fontWeight: FontWeight.w600),
-      padding: const EdgeInsets.symmetric(
-          vertical: MSizes.buttonHeight, horizontal: 20),
+      textStyle: TextStyle(
+          fontSize: 16.sp, color: MColors.black, fontWeight: FontWeight.w600),
+      padding: EdgeInsets.symmetric(
+          vertical: MSizes.buttonHeight.h, horizontal: 20.w),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MSizes.buttonRadius)),
+          borderRadius: BorderRadius.circular(MSizes.buttonRadius.w)),
     ),
   );
 
@@ -27,12 +28,14 @@ class MOutlinedButtonTheme {
     style: OutlinedButton.styleFrom(
       foregroundColor: MColors.light,
       side: const BorderSide(color: MColors.borderPrimary),
-      textStyle: const TextStyle(
-          fontSize: 16, color: MColors.textWhite, fontWeight: FontWeight.w600),
-      padding: const EdgeInsets.symmetric(
-          vertical: MSizes.buttonHeight, horizontal: 20),
+      textStyle: TextStyle(
+          fontSize: 16.sp,
+          color: MColors.textWhite,
+          fontWeight: FontWeight.w600),
+      padding: EdgeInsets.symmetric(
+          vertical: MSizes.buttonHeight.h, horizontal: 20.w),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MSizes.buttonRadius)),
+          borderRadius: BorderRadius.circular(MSizes.buttonRadius.w)),
     ),
   );
 }

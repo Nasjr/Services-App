@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../constants/colors.dart';
 import '../../constants/sizes.dart';
 
@@ -8,8 +9,8 @@ class MCheckboxTheme {
 
   /// Customizable Light Text Theme
   static CheckboxThemeData lightCheckboxTheme = CheckboxThemeData(
-    shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(MSizes.xs)),
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(MSizes.xs.w)),
     checkColor: MaterialStateProperty.resolveWith((states) {
       if (states.contains(MaterialState.selected)) {
         return MColors.white;
@@ -28,8 +29,8 @@ class MCheckboxTheme {
 
   /// Customizable Dark Text Theme
   static CheckboxThemeData darkCheckboxTheme = CheckboxThemeData(
-    shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(MSizes.xs)),
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(MSizes.xs.w)),
     checkColor: MaterialStateProperty.resolveWith((states) {
       if (states.contains(MaterialState.selected)) {
         return MColors.white;

@@ -2,6 +2,7 @@ import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:ecommerce_application/utils/constants/sizes.dart';
 import 'package:ecommerce_application/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({
@@ -15,14 +16,14 @@ class HeaderWidget extends StatelessWidget {
       children: [
         Image.asset(
           MImages.mNAppLogo,
-          height: 80,
+          height: 80.w,
         ),
         Text(
           MTexts.loginTitle,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
-        const SizedBox(
-          height: MSizes.sm,
+        SizedBox(
+          height: MSizes.sm.h,
         ),
         Text(
           MTexts.loginSubTitle,

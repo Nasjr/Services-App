@@ -1,6 +1,7 @@
 import 'package:ecommerce_application/utils/constants/colors.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DividerWidget extends StatelessWidget {
   const DividerWidget({
@@ -18,18 +19,18 @@ class DividerWidget extends StatelessWidget {
         Flexible(
           child: Divider(
             color: dark ? MColors.darkGrey : MColors.grey,
-            thickness: 0.5,
-            indent: 60,
-            endIndent: 5,
+            thickness: 0.5.w,
+            indent: 60.w,
+            endIndent: 5.w,
           ),
         ),
         Text(dividerText),
         Flexible(
           child: Divider(
             color: dark ? MColors.darkGrey : MColors.grey,
-            thickness: 0.5,
-            indent: 5,
-            endIndent: 60,
+            thickness: 0.5.w,
+            indent: 5.w,
+            endIndent: 60.w,
           ),
         )
       ],

@@ -1,5 +1,6 @@
 import 'package:ecommerce_application/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MBottomSheetTheme {
   MBottomSheetTheme._();
@@ -9,7 +10,7 @@ class MBottomSheetTheme {
     backgroundColor: MColors.white,
     modalBackgroundColor: MColors.white,
     constraints: const BoxConstraints(minWidth: double.infinity),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.w)),
   );
 
   static BottomSheetThemeData darkBottomSheetTheme = BottomSheetThemeData(
@@ -17,6 +18,6 @@ class MBottomSheetTheme {
     backgroundColor: MColors.black,
     modalBackgroundColor: MColors.black,
     constraints: const BoxConstraints(minWidth: double.infinity),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.w)),
   );
 }
