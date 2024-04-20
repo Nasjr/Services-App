@@ -14,6 +14,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../SubCategoriesPage/View/SubCategoriesPage.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -120,7 +122,7 @@ class MainPage extends StatelessWidget {
                     const Spacer(),
                     const NotificationsWidget(),
                     IconButton(
-                      onPressed: () => print("object"),
+                      onPressed: () => print('Settings'),
                       icon: Icon(
                         Icons.settings,
                         size: 25.w,
@@ -157,9 +159,12 @@ class MainPage extends StatelessWidget {
         SizedBox(
           height: 10.h,
         ),
-        SectionRowHeader(
-          title: 'Popular Categories',
-        ),
+        GetBuilder<HomeScreenController>(builder: (ctx) {
+          return SectionRowHeader(
+            title: 'Popular Categories',
+            onTap: () => ctx.onDestenationSelected(1),
+          );
+        }),
         HorizontalListView(
             categoryName: "Resturants",
             imageWidth: double.infinity,
@@ -168,13 +173,20 @@ class MainPage extends StatelessWidget {
             imageCategoryPath: MImages.productImage1),
         SectionRowHeader(
           title: 'Popular Services',
+          onTap: () async => await Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const SubCategoriesPage(
+                    title: 'Resturants',
+                  ))),
         ),
-        HorizontalListView(
-            categoryName: "Shabrawy",
-            imageWidth: double.infinity,
-            itemCount: 6,
-            width: 140,
-            imageCategoryPath: MImages.productImage20),
+        Padding(
+          padding: EdgeInsets.only(bottom: 20.h),
+          child: HorizontalListView(
+              categoryName: "Shabrawy",
+              imageWidth: double.infinity,
+              itemCount: 6,
+              width: 140,
+              imageCategoryPath: MImages.productImage20),
+        ),
       ],
     );
   }
@@ -248,6 +260,11 @@ class CustomCategory extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: [0.3, 1.0],
+                colors: [Colors.transparent, Colors.black.withOpacity(0.7)]),
             color: const Color.fromARGB(255, 214, 212, 212),
             borderRadius: BorderRadius.circular(20.w)),
         height: height.h,
@@ -255,25 +272,22 @@ class CustomCategory extends StatelessWidget {
         child: Stack(
           children: [
             ClipRRect(
-              child: ImageFiltered(
-                imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-                child: Image.asset(
-                  width: imageWidth,
-                  alignment: Alignment.center,
-                  imageCategoryPath,
-                  fit: BoxFit.fitWidth,
-                ),
+              child: Image.asset(
+                width: imageWidth,
+                alignment: Alignment.center,
+                imageCategoryPath,
+                fit: BoxFit.fitWidth,
               ),
             ),
             Padding(
               padding: categoryNamePadding,
               child: Container(
-                alignment: Alignment.center,
+                alignment: Alignment.bottomCenter,
                 child: Text(
                   '$categoryName',
                   style: TextStyle(
                       color: Color.fromARGB(225, 255, 255, 255),
-                      fontSize: 14.sp,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.w800),
                   textAlign: TextAlign.center,
                 ),
@@ -290,8 +304,10 @@ class SectionRowHeader extends StatelessWidget {
   const SectionRowHeader({
     super.key,
     required this.title,
+    this.onTap,
   });
   final String title;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -306,19 +322,16 @@ class SectionRowHeader extends StatelessWidget {
           ),
           const Spacer(),
           GestureDetector(
-            child: Text('See all',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 10.sp,
-                  color: MHelperFunctions.isDarkMode(context)
-                      ? Colors.white
-                      : const Color.fromARGB(255, 1, 103, 187),
-                )),
-            onTap: () {
-              print('See all');
-            },
-          ),
+              child: Text('See all',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 10.sp,
+                    color: MHelperFunctions.isDarkMode(context)
+                        ? Colors.white
+                        : const Color.fromARGB(255, 1, 103, 187),
+                  )),
+              onTap: onTap),
         ],
       ),
     );

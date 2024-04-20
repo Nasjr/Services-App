@@ -10,7 +10,7 @@ class HomeScreenController extends GetxController {
   int selectedBottomNavigationBarIndex = 0;
   String currZone = 'All Zones';
 
-  void onDestenationSelected(int index) {
+   onDestenationSelected(int index) {
     selectedBottomNavigationBarIndex = index;
     print(selectedBottomNavigationBarIndex);
     update();
