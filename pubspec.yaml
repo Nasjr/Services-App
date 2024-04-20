@@ -60,11 +60,26 @@ dev_dependencies:
     sdk: flutter
 
   
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#000000"
+  image: assets/logos/GardeniaWhite.png
+  image_dark: assets/logos/GardeniaDark.png
+  android: true
+  ios: true
+  android_12:
+    color: "#ffffff"
+    color_dark: "#000000"
+    image: assets/logos/GardeniaWhite.png
+    image_dark: assets/logos/GardeniaDark.png
+
+
+  web: false
   
   
   
   
-  flutter_lints: ^2.0.0
+flutter_lints: ^2.0.0
 
 
 
