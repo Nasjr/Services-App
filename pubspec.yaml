@@ -49,6 +49,7 @@ dependencies:
   capped_progress_indicator: ^0.0.2
   flutter_screenutil:
   font_awesome_flutter: ^10.7.0
+  cached_network_image: ^3.3.1
 
 
 

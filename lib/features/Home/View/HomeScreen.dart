@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_application/common/widgets/CustomCarousel/CustomCarousel.dart';
 import 'package:ecommerce_application/common/widgets/CustomShapes/CircularContainer.dart';
 import 'package:ecommerce_application/features/Home/Controller/HomeScreenController.dart';
 import 'package:ecommerce_application/features/Home/Controller/MainScreenController.dart';
+import 'package:ecommerce_application/features/Home/model/CategoryModel.dart';
 import 'package:ecommerce_application/utils/constants/colors.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
@@ -29,41 +31,51 @@ class HomeScreen extends StatelessWidget {
         return NavigationBar(
           destinations: [
             NavigationDestination(
-                icon: Icon(
-                  Iconsax.home,
-                  color: context.selectedBottomNavigationBarIndex == 0
-                      ? Colors.white
-                      : Colors.black,
-                ),
+                icon: Icon(Iconsax.home,
+                    color: context.selectedBottomNavigationBarIndex == 0
+                        ? MHelperFunctions.isDarkMode(Get.context!)
+                            ? Colors.black
+                            : Colors.white
+                        : MHelperFunctions.isDarkMode(Get.context!)
+                            ? Colors.white
+                            : Colors.black),
                 label: "Home"),
             NavigationDestination(
-                icon: Icon(
-                  Iconsax.box,
-                  color: context.selectedBottomNavigationBarIndex == 1
-                      ? Colors.white
-                      : Colors.black,
-                ),
+                icon: Icon(Iconsax.box,
+                    color: context.selectedBottomNavigationBarIndex == 1
+                        ? MHelperFunctions.isDarkMode(Get.context!)
+                            ? Colors.black
+                            : Colors.white
+                        : MHelperFunctions.isDarkMode(Get.context!)
+                            ? Colors.white
+                            : Colors.black),
                 label: "Categories"),
             NavigationDestination(
-                icon: Icon(
-                  Icons.favorite_border,
-                  color: context.selectedBottomNavigationBarIndex == 2
-                      ? Colors.white
-                      : Colors.black,
-                ),
+                icon: Icon(Icons.favorite_border,
+                    color: context.selectedBottomNavigationBarIndex == 2
+                        ? MHelperFunctions.isDarkMode(Get.context!)
+                            ? Colors.black
+                            : Colors.white
+                        : MHelperFunctions.isDarkMode(Get.context!)
+                            ? Colors.white
+                            : Colors.black),
                 label: "favorites"),
             NavigationDestination(
-                icon: Icon(
-                  Iconsax.discount_shape,
-                  color: context.selectedBottomNavigationBarIndex == 3
-                      ? Colors.white
-                      : Colors.black,
-                ),
+                icon: Icon(Iconsax.discount_shape,
+                    color: context.selectedBottomNavigationBarIndex == 3
+                        ? MHelperFunctions.isDarkMode(Get.context!)
+                            ? Colors.black
+                            : Colors.white
+                        : MHelperFunctions.isDarkMode(Get.context!)
+                            ? Colors.white
+                            : Colors.black),
                 label: "Offers"),
           ],
           height: 50.h,
           animationDuration: Durations.long1,
-          indicatorColor: Colors.blue,
+          indicatorColor: MHelperFunctions.isDarkMode(Get.context!)
+              ? Colors.white
+              : Colors.blue,
           onDestinationSelected: (index) =>
               context.onDestenationSelected(index),
           selectedIndex: context.selectedBottomNavigationBarIndex,
@@ -75,139 +87,18 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class MainPage extends StatelessWidget {
-  const MainPage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  const Color(0xFF0E3EDA).withOpacity(0.9),
-                  const Color.fromARGB(255, 66, 177, 236),
-                ],
-              ),
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(0.w),
-                  bottomRight: Radius.circular(0.w))),
-          padding:
-              EdgeInsets.only(top: 15.h, bottom: 10.h, left: 15.w, right: 15.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GetBuilder<MainScreenController>(builder: (cont) {
-                return Row(
-                  children: [
-                    CustomDropDown(
-                        value: cont.currZone,
-                        items: cont.zones.map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              'Selected Zone ($value)',
-                              style: TextStyle(
-                                  fontSize: 10.sp, color: MColors.white),
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (zone) => cont.onZoneChanged(zone)),
-                    const Spacer(),
-                    const NotificationsWidget(),
-                    IconButton(
-                      onPressed: () => print('Settings'),
-                      icon: Icon(
-                        Icons.settings,
-                        size: 25.w,
-                      ),
-                    ),
-                  ],
-                );
-              }),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                'Hi, UserId: 34948456578346',
-                style: TextStyle(
-                    color: MColors.light,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              SearchWidget()
-            ],
-          ),
-        ),
-        GetBuilder<MainScreenController>(
-            id: 'CrouselBuilder',
-            builder: (contr) {
-              return CustomCarousel(
-                  onPageChanged: (index, _) => contr.onPageChanged(index),
-                  banners: contr.banners,
-                  currentIndex: contr.currIndex);
-            }),
-        SizedBox(
-          height: 10.h,
-        ),
-        GetBuilder<HomeScreenController>(builder: (ctx) {
-          return SectionRowHeader(
-            title: 'Popular Categories',
-            onTap: () => ctx.onDestenationSelected(1),
-          );
-        }),
-        HorizontalListView(
-            categoryName: "Resturants",
-            imageWidth: double.infinity,
-            itemCount: 10,
-            width: 140,
-            imageCategoryPath: MImages.productImage1),
-        SectionRowHeader(
-          title: 'Popular Services',
-          onTap: () async => await Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const SubCategoriesPage(
-                    title: 'Resturants',
-                  ))),
-        ),
-        Padding(
-          padding: EdgeInsets.only(bottom: 20.h),
-          child: HorizontalListView(
-              categoryName: "Shabrawy",
-              imageWidth: double.infinity,
-              itemCount: 6,
-              width: 140,
-              imageCategoryPath: MImages.productImage20),
-        ),
-      ],
-    );
-  }
-}
-
 class HorizontalListView extends StatelessWidget {
   const HorizontalListView({
     super.key,
-    required this.itemCount,
     this.height,
-    required this.categoryName,
-    required this.imageCategoryPath,
     required this.imageWidth,
     required this.width,
+    required this.categoriesList,
   });
-  final int itemCount;
   final double? height;
-  final String categoryName;
-  final String imageCategoryPath;
   final double imageWidth;
   final double width;
+  final List<CategoryModel> categoriesList;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -219,15 +110,17 @@ class HorizontalListView extends StatelessWidget {
         ),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
+        itemCount: categoriesList.length,
         itemBuilder: (context, index) {
-          return CustomCategory(
-            categoryName: categoryName,
-            imageCategoryPath: imageCategoryPath,
-            width: width,
-            imageWidth: imageWidth,
-            index: index,
-          );
+          return GetBuilder<MainScreenController>(builder: (context) {
+            return CustomCategory(
+              categoryName: categoriesList[index].name,
+              imageCategoryPath: categoriesList[index].imageUrl,
+              width: width,
+              imageWidth: imageWidth,
+              index: index,
+            );
+          });
         },
       ),
     );
@@ -246,6 +139,7 @@ class CustomCategory extends StatelessWidget {
     required this.imageCategoryPath,
     this.onTap,
     this.categoryNamePadding = const EdgeInsets.only(left: 5, right: 5),
+    this.isNetworkImage = true,
   });
   final int index;
   final double width, height;
@@ -254,30 +148,45 @@ class CustomCategory extends StatelessWidget {
   final String imageCategoryPath;
   final void Function()? onTap;
   final EdgeInsetsGeometry categoryNamePadding;
+  final bool isNetworkImage;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [0.3, 1.0],
-                colors: [Colors.transparent, Colors.black.withOpacity(0.7)]),
-            color: const Color.fromARGB(255, 214, 212, 212),
+            color: MHelperFunctions.isDarkMode(context)
+                ? Color.fromARGB(255, 80, 79, 79)
+                : const Color.fromARGB(255, 214, 212, 212),
             borderRadius: BorderRadius.circular(20.w)),
         height: height.h,
         width: width.w,
         child: Stack(
           children: [
             ClipRRect(
-              child: Image.asset(
-                width: imageWidth,
-                alignment: Alignment.center,
-                imageCategoryPath,
-                fit: BoxFit.fitWidth,
-              ),
+              child: isNetworkImage
+                  ? CachedNetworkImage(
+                      imageUrl: imageCategoryPath,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.w),
+                          image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.fitWidth,
+                              colorFilter: ColorFilter.mode(
+                                  Colors.red, BlendMode.colorBurn)),
+                        ),
+                      ),
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    )
+                  : Image.asset(
+                      width: imageWidth,
+                      alignment: Alignment.center,
+                      imageCategoryPath,
+                      fit: BoxFit.fitWidth,
+                    ),
             ),
             Padding(
               padding: categoryNamePadding,
@@ -328,7 +237,7 @@ class SectionRowHeader extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 10.sp,
                     color: MHelperFunctions.isDarkMode(context)
-                        ? Colors.white
+                        ? Colors.lightBlue
                         : const Color.fromARGB(255, 1, 103, 187),
                   )),
               onTap: onTap),

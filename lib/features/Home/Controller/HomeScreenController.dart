@@ -1,10 +1,10 @@
 import 'package:ecommerce_application/features/FavoritesPage/View/Favorites.dart';
-import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
 import 'package:ecommerce_application/features/OffersPage/View/OffersPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../CategoriesPage/View/CategoriesPage.dart';
+import '../View/Widgets/MainPage.dart';
 
 class HomeScreenController extends GetxController {
   int selectedBottomNavigationBarIndex = 0;
