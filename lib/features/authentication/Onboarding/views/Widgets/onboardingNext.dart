@@ -17,11 +17,11 @@ class NextButton extends StatelessWidget {
     final dark = MHelperFunctions.isDarkMode(context);
     return Positioned(
         right: MSizes.defaultSpace.w,
-        bottom: MDeviceUtils.getBottomNavigationBarHeight().h,
+        bottom: MDeviceUtils.getBottomNavigationBarHeight() / 1.5.h,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(),
-                backgroundColor: dark ? MColors.primary : MColors.black),
+                backgroundColor: dark ? MColors.primary : Colors.green),
             onPressed: OnBoardingController.instance.nextPage,
             child: const Icon(Iconsax.arrow_right_3)));
   }

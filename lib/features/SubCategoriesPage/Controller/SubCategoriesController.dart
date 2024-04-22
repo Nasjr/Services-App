@@ -4,14 +4,11 @@ import '../Model/SubCategoriesModel.dart';
 
 class SubCategoriesController extends GetxController {
   SubCategoriesController(this.title);
+  
   String title;
   static SubCategoriesController get instace => Get.find();
   List<SubCategoriesModel> subCategoriesModelList = [];
-  @override
-  void onInit() {
-    convertJosntoModel();
-    super.onInit();
-  }
+
 
   List<SubCategoriesModel> currSubCategory = [];
   var jsonList = [
@@ -105,11 +102,19 @@ class SubCategoriesController extends GetxController {
         jsonList.map((json) => SubCategoriesModel.fromJson(json)).toList();
   }
 
-  void filterByParentCategory(String Category) {
+  void filterByParentCategory(String Category) async {
     print(Category);
     currSubCategory = subCategoriesModelList
         .where((element) =>
             element.parentName.toLowerCase() == Category.toLowerCase())
         .toList();
+    update();
+  }
+    @override
+  void onInit() async {
+    convertJosntoModel();
+     filterByParentCategory(title);
+    
+    super.onInit();
   }
 }

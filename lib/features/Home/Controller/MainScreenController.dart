@@ -1,8 +1,5 @@
-import 'package:ecommerce_application/features/Home/View/Widgets/Roundedbanner.dart';
 import 'package:ecommerce_application/features/Home/model/CategoryModel.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainScreenController extends GetxController {

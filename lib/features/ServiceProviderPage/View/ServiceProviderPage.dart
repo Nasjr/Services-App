@@ -1,18 +1,29 @@
-import 'package:ecommerce_application/common/widgets/BrandCard.dart';
-import 'package:ecommerce_application/common/widgets/CustomAppBar/CustomAppBar.dart';
 import 'package:ecommerce_application/common/widgets/FavouriteIcon.dart';
-import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
-import 'package:ecommerce_application/utils/constants/colors.dart';
+import 'package:ecommerce_application/features/ServicesPage/Model/ServicesModel.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
-import 'package:ecommerce_application/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ServiceProviderPage extends StatelessWidget {
-  const ServiceProviderPage({super.key, required this.title});
-  final String title;
+  ServiceProviderPage({super.key, required this.servicePorvider});
+  final ServicesModel servicePorvider;
+  String phoneNumber = '01153453880';
+  // Future<void> makePhoneCall(String phoneNumber) async {
+  //   final Uri launchUri = Uri(
+  //     scheme: 'tel',
+  //     path: phoneNumber,
+  //   );
+  //   await launchUrl(launchUri);
+  // }
+  launch(String url) async {
+    Uri convertedUri = Uri.parse(url);
+    if (!await launchUrl(convertedUri)) {
+      throw Exception('Could not launch $convertedUri');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +33,7 @@ class ServiceProviderPage extends StatelessWidget {
         CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Theme.of(context).backgroundColor,
+              backgroundColor: Theme.of(context).colorScheme.background,
               elevation: 0,
               automaticallyImplyLeading: false,
               centerTitle: true,
@@ -72,7 +83,7 @@ class ServiceProviderPage extends StatelessWidget {
                     top: 190.h,
                     left: 100.w,
                     child: Text(
-                      'Al Shabrawy',
+                      servicePorvider.name,
                       style: TextStyle(
                           fontSize: 18.sp,
                           color: Colors.white,
@@ -92,7 +103,7 @@ class ServiceProviderPage extends StatelessWidget {
                         height: 20.h,
                       ),
                       Text(
-                          'What is Lorem Ipsum?Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.'),
+                          '${servicePorvider.description}  -- What is Lorem Ipsum?Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.'),
                     ],
                   ),
                 ),
@@ -107,12 +118,15 @@ class ServiceProviderPage extends StatelessWidget {
             ButtomButtton(
               title: 'Call',
               icon: Icons.call,
-              ontap: () => print('Calling'),
+              ontap: () {
+                launch("tel://+201153453880".trim());
+              },
             ),
             ButtomButtton(
               title: 'Whatsapp',
               icon: FontAwesomeIcons.whatsapp,
-              ontap: () => print('Calling'),
+              ontap: () => launch(
+                  'whatsapp://send?text=sample text&phone=+201153453880'),
             ),
           ],
         ),
@@ -141,14 +155,14 @@ class ButtomButtton extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  const Color(0xFF0E3EDA).withOpacity(0.9),
-                  const Color.fromARGB(255, 66, 177, 236),
+                  Color.fromARGB(255, 3, 136, 59),
+                  Color.fromARGB(255, 4, 180, 92).withOpacity(0.9),
                 ],
               ),
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(
-                    color: Color.fromARGB(255, 3, 58, 240).withOpacity(0.6),
+                    color: Color.fromARGB(255, 3, 80, 35),
                     offset: Offset(0, 10),
                     blurRadius: 10)
               ]),

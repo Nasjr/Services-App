@@ -1,9 +1,5 @@
-import 'package:ecommerce_application/common/styles/spacingStyles.dart';
 import 'package:ecommerce_application/common/widgets/SuccessScreen/SucessScreen.dart';
 import 'package:ecommerce_application/features/authentication/Login/views/Login.dart';
-import 'package:ecommerce_application/features/authentication/Login/views/Widgets/loginFooter.dart';
-import 'package:ecommerce_application/features/authentication/Login/views/Widgets/loginForm.dart';
-import 'package:ecommerce_application/features/authentication/Login/views/Widgets/loginHeader.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:ecommerce_application/utils/constants/sizes.dart';
 import 'package:ecommerce_application/utils/constants/text_strings.dart';
@@ -11,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import '../../../../common/widgets/DividerWidget.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});

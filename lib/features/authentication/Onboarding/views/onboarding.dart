@@ -51,6 +51,7 @@ class OnboardingScreen extends StatelessWidget {
             // Dot Navigation SmoothPageIndicator
             const PageIndicator(),
             // Circular Button
+
             const NextButton()
           ],
         ),

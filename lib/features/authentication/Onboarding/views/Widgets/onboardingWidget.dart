@@ -22,16 +22,22 @@ class OnboardingWidget extends StatelessWidget {
             height: MHelperFunctions.screenWidth() * 0.8.h),
         Text(
           title,
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall
+              ?.copyWith(fontSize: 22.sp),
           textAlign: TextAlign.center,
         ),
         SizedBox(
           height: MSizes.spaceBtwItems.h,
         ),
-        Text(
-          subtitle,
-          style: Theme.of(context).textTheme.bodyMedium,
-          textAlign: TextAlign.center,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 3.w),
+          child: Text(
+            subtitle,
+            style: Theme.of(context).textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+          ),
         )
       ],
     );

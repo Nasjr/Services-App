@@ -1,10 +1,10 @@
+import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../common/widgets/CustomCarousel/CustomCarousel.dart';
 import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/image_strings.dart';
 import '../../../SubCategoriesPage/View/SubCategoriesPage.dart';
 import '../../Controller/HomeScreenController.dart';
 import '../../Controller/MainScreenController.dart';
@@ -24,11 +24,16 @@ class MainPage extends StatelessWidget {
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  const Color(0xFF0E3EDA).withOpacity(0.9),
-                  const Color.fromARGB(255, 66, 177, 236),
-                ],
+                end: Alignment.bottomCenter,
+                colors: MHelperFunctions.isDarkMode(context)
+                    ? [
+                        Color.fromARGB(255, 0, 0, 0),
+                        Color.fromARGB(255, 77, 77, 77),
+                      ]
+                    : [
+                        Color.fromARGB(255, 3, 136, 59),
+                        Color.fromARGB(255, 4, 180, 92).withOpacity(0.9),
+                      ],
               ),
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20.w),
@@ -111,7 +116,7 @@ class MainPage extends StatelessWidget {
         SectionRowHeader(
           title: 'Popular Services',
           onTap: () async => await Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const SubCategoriesPage(
+              builder: (context) => SubCategoriesPage(
                     title: 'Resturants',
                   ))),
         ),

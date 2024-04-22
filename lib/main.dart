@@ -1,8 +1,6 @@
-import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
 import 'package:ecommerce_application/features/authentication/AuthRepository/AuthRepository.dart';
-import 'package:ecommerce_application/features/authentication/Onboarding/views/onboarding.dart';
+import 'package:ecommerce_application/features/authentication/splashScreen/splashScreen.dart';
 import 'package:ecommerce_application/utils/constants/local_storage.dart';
-import 'package:ecommerce_application/utils/local_storage/local_storage.dart';
 import 'package:ecommerce_application/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,19 +11,20 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   // Todo: add Widgits Binding
-  final WidgetsBinding widgetsBinding =
-      WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   // Todo: Init Local Storage
   await Hive.initFlutter();
   await Hive.openBox(LocalDataSourceBoxs.configBox);
-  // Check for the first launch
+  // Remove the defult splash Screen
 
-  // Todo: Await Native Splash
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  FlutterNativeSplash.remove();
   // Todo: Initialize Firebase
+
+  // Todo: Initialize Authentication
   await Future.delayed(Durations.long3)
       .then((value) => Get.put(AuthenticationRepository()));
-  // Todo: Initialize Authentication
+  // Initialize UI Setup and colors
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(const App()));
 }
@@ -35,21 +34,23 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Color.fromARGB(255, 0, 0, 0)));
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
         return GetMaterialApp(
-          // customize themes
-          themeMode: ThemeMode.system,
-          theme: MAppTheme.lightTheme,
-          debugShowCheckedModeBanner: false,
-          darkTheme: MAppTheme.darkTheme,
-          home: const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          ),
-        );
+            // customize themes
+            themeMode: ThemeMode.system,
+            theme: MAppTheme.lightTheme,
+            debugShowCheckedModeBanner: false,
+            darkTheme: MAppTheme.darkTheme,
+            home: Scaffold(
+                body: Center(
+              child: CircularProgressIndicator(),
+            )));
       },
     );
   }

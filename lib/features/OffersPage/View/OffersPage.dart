@@ -1,9 +1,7 @@
 import 'package:ecommerce_application/common/widgets/CustomAppBar/CustomAppBar.dart';
 import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
-import 'package:ecommerce_application/utils/constants/colors.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OffersPage extends StatelessWidget {
   const OffersPage({super.key});
@@ -25,7 +23,8 @@ class OffersPage extends StatelessWidget {
               mainAxisSpacing: 30),
           itemBuilder: (context, index) => CustomCategory(
             categoryName: "Sea food",
-            imageCategoryPath: MImages.productImage10,
+            imageCategoryPath: MImages.productImage1,
+            isNetworkImage: false,
             imageWidth: double.infinity,
             index: index,
           ),
@@ -34,4 +33,3 @@ class OffersPage extends StatelessWidget {
     );
   }
 }
-

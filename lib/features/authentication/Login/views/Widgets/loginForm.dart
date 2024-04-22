@@ -1,10 +1,7 @@
-import 'package:ecommerce_application/features/authentication/ForgetPassword/controllers/forget_password_controller.dart';
 import 'package:ecommerce_application/features/authentication/ForgetPassword/views/ForgetPassword.dart';
-import 'package:ecommerce_application/features/authentication/Onboarding/controllers/onboarding_controller.dart';
 import 'package:ecommerce_application/features/authentication/SignUp/views/Signup.dart';
 import 'package:ecommerce_application/utils/constants/sizes.dart';
 import 'package:ecommerce_application/utils/constants/text_strings.dart';
-import 'package:ecommerce_application/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

@@ -1,5 +1,4 @@
 import 'package:ecommerce_application/common/widgets/BrandCard.dart';
-import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 

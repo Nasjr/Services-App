@@ -1,8 +1,6 @@
 import 'package:ecommerce_application/common/styles/spacingStyles.dart';
 import 'package:ecommerce_application/common/widgets/TextFormWidget.dart';
 import 'package:ecommerce_application/features/authentication/Login/views/Widgets/loginFooter.dart';
-import 'package:ecommerce_application/features/authentication/Login/views/Widgets/loginForm.dart';
-import 'package:ecommerce_application/features/authentication/Login/views/Widgets/loginHeader.dart';
 import 'package:ecommerce_application/features/authentication/VerifyEmail/views/VerifyEmail.dart';
 import 'package:ecommerce_application/utils/constants/colors.dart';
 import 'package:ecommerce_application/utils/constants/sizes.dart';

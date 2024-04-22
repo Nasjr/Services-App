@@ -1,8 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_application/common/widgets/CustomShapes/CircularContainer.dart';
 import 'package:ecommerce_application/features/Home/View/Widgets/Roundedbanner.dart';
-import 'package:ecommerce_application/utils/constants/colors.dart';
-import 'package:ecommerce_application/utils/constants/sizes.dart';
+import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -68,16 +67,22 @@ class CustomCarousel extends StatelessWidget {
                       ? LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: [
-                            const Color(0xFF0E3EDA).withOpacity(0.9),
-                            const Color.fromARGB(255, 66, 177, 236),
-                          ],
+                          colors: MHelperFunctions.isDarkMode(context)
+                              ? [
+                                  Color.fromARGB(255, 255, 255, 255),
+                                  Color.fromARGB(255, 255, 255, 255),
+                                ]
+                              : [
+                                  Color.fromARGB(255, 3, 136, 59),
+                                  Color.fromARGB(255, 4, 180, 92)
+                                      .withOpacity(0.9),
+                                ],
                         )
                       : null,
                   width: 20,
                   height: 5,
                   margin: EdgeInsets.only(right: 10.w),
-                  backgroundColor: Colors.grey,
+                  backgroundColor: const Color.fromARGB(255, 105, 105, 105),
                 ),
             ],
           ),

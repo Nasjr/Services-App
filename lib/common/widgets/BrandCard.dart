@@ -2,12 +2,9 @@ import 'package:ecommerce_application/common/widgets/FavouriteIcon.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../features/Home/View/Widgets/Roundedbanner.dart';
 import '../../utils/constants/colors.dart';
-import '../../utils/constants/enums.dart';
-import '../../utils/constants/image_strings.dart';
 import '../../utils/constants/sizes.dart';
 
 class ProductCardVertical extends StatelessWidget {
@@ -139,7 +136,7 @@ class MRoundedContainer extends StatelessWidget {
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius!.w),
+          borderRadius: BorderRadius.circular(radius.w),
           border: showBorder ? Border.all(color: borderColor) : null,
           color: backgroundColor),
       child: child,

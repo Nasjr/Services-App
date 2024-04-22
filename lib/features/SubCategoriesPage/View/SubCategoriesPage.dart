@@ -1,11 +1,9 @@
 import 'package:ecommerce_application/common/widgets/CustomAppBar/CustomAppBar.dart';
 import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
+import 'package:ecommerce_application/features/ServicesPage/Controller/ServicesController.dart';
 import 'package:ecommerce_application/features/ServicesPage/View/ServicesPage.dart';
 import 'package:ecommerce_application/features/SubCategoriesPage/Controller/SubCategoriesController.dart';
-import 'package:ecommerce_application/utils/constants/image_strings.dart';
-import 'package:ecommerce_application/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class SubCategoriesPage extends StatelessWidget {
@@ -14,6 +12,7 @@ class SubCategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(SubCategoriesController(title));
+    Get.put(ServicesContorller('abc'));
     return Scaffold(
       appBar: CustomAppBar(
         title: '$title',
@@ -27,28 +26,30 @@ class SubCategoriesPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               )
-            : GridView.builder(
-                itemCount:
-                    SubCategoriesController.instace.currSubCategory.length,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 288,
-                    childAspectRatio: 3 / 2,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 40),
-                itemBuilder: (context, index) => CustomCategory(
-                  categoryName: SubCategoriesController
-                      .instace.currSubCategory[index].name,
-                  imageCategoryPath: SubCategoriesController
-                      .instace.currSubCategory[index].imageUrl,
-                  imageWidth: double.infinity,
-                  onTap: () async =>
+            : GetBuilder<SubCategoriesController>(builder: (ctrl) {
+                return GridView.builder(
+                  itemCount: ctrl.currSubCategory.length,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 288,
+                      childAspectRatio: 3 / 2,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 40),
+                  itemBuilder: (context, index) => CustomCategory(
+                    categoryName: ctrl.currSubCategory[index].name,
+                    imageCategoryPath: ctrl.currSubCategory[index].imageUrl,
+                    imageWidth: double.infinity,
+                    onTap: () async {
+                      ServicesContorller.instance
+                          .filterDataSrc(ctrl.currSubCategory[index].name);
                       await Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ServicesPage(
-                                title: 'Resturants',
-                              ))),
-                  index: index,
-                ),
-              ),
+                          builder: (context) => ServicesPage(
+                                title: ctrl.currSubCategory[index].name,
+                              )));
+                    },
+                    index: index,
+                  ),
+                );
+              }),
       ),
     );
   }

@@ -17,11 +17,13 @@ class PageIndicator extends StatelessWidget {
     final dark = MHelperFunctions.isDarkMode(context);
     final controller = OnBoardingController.instance;
     return Positioned(
-        bottom: MDeviceUtils.getAppBarHeight() + 25.h,
+        bottom: MDeviceUtils.getAppBarHeight() + 5.h,
         left: MSizes.defaultSpace,
         child: SmoothPageIndicator(
             effect: ExpandingDotsEffect(
-                dotColor: dark ? MColors.light : MColors.dark, dotHeight: 6.h),
+                activeDotColor: Colors.green,
+                dotColor: dark ? MColors.light : Colors.black,
+                dotHeight: 6.h),
             controller: controller.pageController,
             onDotClicked: (index) => controller.dotNavigationOnclick(index),
             count: 3));

@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/utils/device/device_utility.dart';
+import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,10 +19,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [
-                  const Color(0xFF0E3EDA).withOpacity(0.9),
-                  const Color.fromARGB(255, 66, 177, 236),
-                ],
+                colors: MHelperFunctions.isDarkMode(context)
+                    ? [
+                        Color.fromARGB(255, 0, 0, 0),
+                        Color.fromARGB(255, 77, 77, 77),
+                      ]
+                    : [
+                        Color.fromARGB(255, 3, 136, 59),
+                        Color.fromARGB(255, 4, 180, 92).withOpacity(0.9),
+                      ],
               ),
             ),
             child: Padding(
@@ -30,7 +36,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                    fontSize: 14.0.sp,
+                    fontSize: title.length > 20 ? 12.sp : 14.0.sp,
                     fontWeight: FontWeight.w500,
                     color: Colors.white),
               ),

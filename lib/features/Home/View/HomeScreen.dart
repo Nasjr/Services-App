@@ -1,22 +1,13 @@
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_application/common/widgets/CustomCarousel/CustomCarousel.dart';
-import 'package:ecommerce_application/common/widgets/CustomShapes/CircularContainer.dart';
 import 'package:ecommerce_application/features/Home/Controller/HomeScreenController.dart';
 import 'package:ecommerce_application/features/Home/Controller/MainScreenController.dart';
 import 'package:ecommerce_application/features/Home/model/CategoryModel.dart';
 import 'package:ecommerce_application/utils/constants/colors.dart';
-import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
-import '../../SubCategoriesPage/View/SubCategoriesPage.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -26,59 +17,58 @@ class HomeScreen extends StatelessWidget {
     Get.put(MainScreenController());
     HomeScreenController controller = Get.put(HomeScreenController());
     return SafeArea(
-      child: Scaffold(bottomNavigationBar:
-          GetBuilder<HomeScreenController>(builder: (context) {
+      child: Scaffold(
+          bottomNavigationBar: GetBuilder<HomeScreenController>(builder: (ctx) {
         return NavigationBar(
           destinations: [
             NavigationDestination(
                 icon: Icon(Iconsax.home,
-                    color: context.selectedBottomNavigationBarIndex == 0
-                        ? MHelperFunctions.isDarkMode(Get.context!)
+                    color: ctx.selectedBottomNavigationBarIndex == 0
+                        ? MHelperFunctions.isDarkMode(context)
                             ? Colors.black
                             : Colors.white
-                        : MHelperFunctions.isDarkMode(Get.context!)
+                        : MHelperFunctions.isDarkMode(context)
                             ? Colors.white
                             : Colors.black),
                 label: "Home"),
             NavigationDestination(
                 icon: Icon(Iconsax.box,
-                    color: context.selectedBottomNavigationBarIndex == 1
-                        ? MHelperFunctions.isDarkMode(Get.context!)
+                    color: ctx.selectedBottomNavigationBarIndex == 1
+                        ? MHelperFunctions.isDarkMode(context)
                             ? Colors.black
                             : Colors.white
-                        : MHelperFunctions.isDarkMode(Get.context!)
+                        : MHelperFunctions.isDarkMode(context)
                             ? Colors.white
                             : Colors.black),
                 label: "Categories"),
             NavigationDestination(
                 icon: Icon(Icons.favorite_border,
-                    color: context.selectedBottomNavigationBarIndex == 2
-                        ? MHelperFunctions.isDarkMode(Get.context!)
+                    color: ctx.selectedBottomNavigationBarIndex == 2
+                        ? MHelperFunctions.isDarkMode(context)
                             ? Colors.black
                             : Colors.white
-                        : MHelperFunctions.isDarkMode(Get.context!)
+                        : MHelperFunctions.isDarkMode(context)
                             ? Colors.white
                             : Colors.black),
                 label: "favorites"),
             NavigationDestination(
                 icon: Icon(Iconsax.discount_shape,
-                    color: context.selectedBottomNavigationBarIndex == 3
-                        ? MHelperFunctions.isDarkMode(Get.context!)
+                    color: ctx.selectedBottomNavigationBarIndex == 3
+                        ? MHelperFunctions.isDarkMode(context)
                             ? Colors.black
                             : Colors.white
-                        : MHelperFunctions.isDarkMode(Get.context!)
+                        : MHelperFunctions.isDarkMode(context)
                             ? Colors.white
                             : Colors.black),
                 label: "Offers"),
           ],
-          height: 50.h,
+          height: 60.h,
           animationDuration: Durations.long1,
-          indicatorColor: MHelperFunctions.isDarkMode(Get.context!)
+          indicatorColor: MHelperFunctions.isDarkMode(context)
               ? Colors.white
-              : Colors.blue,
-          onDestinationSelected: (index) =>
-              context.onDestenationSelected(index),
-          selectedIndex: context.selectedBottomNavigationBarIndex,
+              : Color.fromARGB(255, 4, 180, 92).withOpacity(0.9),
+          onDestinationSelected: (index) => ctx.onDestenationSelected(index),
+          selectedIndex: ctx.selectedBottomNavigationBarIndex,
         );
       }), body: GetBuilder<HomeScreenController>(builder: (cont) {
         return cont.changeCurrPage();
@@ -346,7 +336,7 @@ class CustomDropDown extends StatelessWidget {
       value: value,
       items: items,
       onChanged: onChanged,
-      dropdownColor: const Color.fromARGB(255, 33, 122, 238),
+      dropdownColor: Color.fromARGB(255, 230, 233, 236),
     );
   }
 }

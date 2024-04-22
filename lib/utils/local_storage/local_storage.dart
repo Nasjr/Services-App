@@ -1,5 +1,4 @@
 import 'package:ecommerce_application/utils/constants/local_storage.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class AppLocalStorage {
