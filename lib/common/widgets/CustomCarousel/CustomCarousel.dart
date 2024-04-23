@@ -38,7 +38,7 @@ class CustomCarousel extends StatelessWidget {
                   ),
               ],
               options: CarouselOptions(
-                height: 250,
+                height: 230.h,
                 aspectRatio: 16 / 9,
                 viewportFraction: 0.8,
                 initialPage: 0,
@@ -54,38 +54,33 @@ class CustomCarousel extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
               )),
         ),
-        SizedBox(
-          height: 10.h,
-        ),
-        Center(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              for (int i = 0; i < banners.length; i++)
-                CircularContainer(
-                  gradient: currentIndex == i
-                      ? LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: MHelperFunctions.isDarkMode(context)
-                              ? [
-                                  Color.fromARGB(255, 255, 255, 255),
-                                  Color.fromARGB(255, 255, 255, 255),
-                                ]
-                              : [
-                                  Color.fromARGB(255, 3, 136, 59),
-                                  Color.fromARGB(255, 4, 180, 92)
-                                      .withOpacity(0.9),
-                                ],
-                        )
-                      : null,
-                  width: 20,
-                  height: 5,
-                  margin: EdgeInsets.only(right: 10.w),
-                  backgroundColor: const Color.fromARGB(255, 105, 105, 105),
-                ),
-            ],
-          ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (int i = 0; i < banners.length; i++)
+              CircularContainer(
+                gradient: currentIndex == i
+                    ? LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: MHelperFunctions.isDarkMode(context)
+                            ? [
+                                Color.fromARGB(255, 255, 255, 255),
+                                Color.fromARGB(255, 255, 255, 255),
+                              ]
+                            : [
+                                Color.fromARGB(255, 3, 136, 59),
+                                Color.fromARGB(255, 4, 180, 92)
+                                    .withOpacity(0.9),
+                              ],
+                      )
+                    : null,
+                width: 20,
+                height: 5,
+                margin: EdgeInsets.only(right: 10.w),
+                backgroundColor: const Color.fromARGB(255, 105, 105, 105),
+              ),
+          ],
         ),
       ],
     );

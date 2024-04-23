@@ -1,5 +1,7 @@
 import 'package:ecommerce_application/common/widgets/CustomAppBar/CustomAppBar.dart';
+import 'package:ecommerce_application/common/widgets/CustomCategoryWidget/CustomCategoryWidget.dart';
 import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
+import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,7 @@ class OffersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Offers',
+        title: S.current.Offers,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

@@ -1,0 +1,23 @@
+{
+  "SearchText": "Search for Services" ,
+  "PopularCat": "Popular Categories"  ,
+  "PopularSer": "Popular Services" ,
+  "Seeall": "See all",
+  "Home": "Home",
+  "Categories": "Categories",
+  "Favourites": "Favourites",
+  "Offers": "Offers",
+  "Settings": "Settings",
+  "Notifications": "Notifications",
+  "Call": "Call",
+  "ChangeTheme" : "Change Theme",
+  "ChangLang" : "Change Langauage",
+  "UploadCat" : "Upload Categories",
+  "UploadService" : "Upload Services",
+  "UploadSubCat" : "Upload SubCategories",
+  "SelectedZoneAll ": "Selected Zone (All Zones)",
+  "SelectedZoneOne ": "Selected Zone (One)",
+  "SelectedZonetwo ": "Selected Zone (Two)",
+  "SelectedZonethree ": "Selected Zone (Three)"
+}
+

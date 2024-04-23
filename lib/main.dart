@@ -1,9 +1,11 @@
 import 'package:ecommerce_application/features/authentication/AuthRepository/AuthRepository.dart';
 import 'package:ecommerce_application/features/authentication/splashScreen/splashScreen.dart';
+import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/local_storage.dart';
 import 'package:ecommerce_application/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,13 +15,12 @@ void main() async {
   // Todo: add Widgits Binding
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  print('In Here');
-  FlutterNativeSplash.remove();
+
   // Todo: Init Local Storage
   await Hive.initFlutter();
   await Hive.openBox(LocalDataSourceBoxs.configBox);
   // Remove the defult splash Screen
-
+  FlutterNativeSplash.remove();
   // Todo: Initialize Firebase
 
   // Todo: Initialize Authentication
@@ -44,6 +45,14 @@ class App extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) {
         return GetMaterialApp(
+            localizationsDelegates: [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: Locale('ar'),
             // customize themes
             themeMode: ThemeMode.system,
             theme: MAppTheme.lightTheme,

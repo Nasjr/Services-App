@@ -30,13 +30,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ],
               ),
             ),
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 30.0, top: 12.0, bottom: 12.0),
+            child: Center(
               child: Text(
                 title,
                 style: TextStyle(
-                    fontSize: title.length > 20 ? 12.sp : 14.0.sp,
+                    fontSize: title.length > 20 ? 12.sp : 22.0.sp,
                     fontWeight: FontWeight.w500,
                     color: Colors.white),
               ),

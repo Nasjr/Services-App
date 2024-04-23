@@ -10,14 +10,13 @@ class HomeScreenController extends GetxController {
   int selectedBottomNavigationBarIndex = 0;
   String currZone = 'All Zones';
 
-   onDestenationSelected(int index) {
+  onDestenationSelected(int index) {
     selectedBottomNavigationBarIndex = index;
     print(selectedBottomNavigationBarIndex);
     update();
   }
 
   Widget changeCurrPage() {
-    print('Here');
     if (selectedBottomNavigationBarIndex == 0) {
       return const MainPage();
     } else if (selectedBottomNavigationBarIndex == 1) {

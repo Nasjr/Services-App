@@ -1,5 +1,6 @@
 import 'package:ecommerce_application/common/widgets/FavouriteIcon.dart';
 import 'package:ecommerce_application/features/ServicesPage/Model/ServicesModel.dart';
+import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -119,7 +120,7 @@ class ServiceProviderPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ButtomButtton(
-              title: 'Call',
+              title: "Call",
               icon: Icons.call,
               ontap: () {
                 launch("tel://+201153453880".trim());

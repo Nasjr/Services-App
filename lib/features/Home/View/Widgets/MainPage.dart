@@ -1,4 +1,6 @@
+import 'package:ecommerce_application/features/ServicesPage/View/ServicesPage.dart';
 import 'package:ecommerce_application/features/Settings/View/Settings.dart';
+import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../common/widgets/CustomCarousel/CustomCarousel.dart';
+import '../../../../common/widgets/CustomDropDown/CustomDropDown.dart';
+import '../../../../common/widgets/CustomSearchWidget/CustomSearchWidget.dart';
+import '../../../../common/widgets/NotificationWidget/NotificationWidget.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../SubCategoriesPage/View/SubCategoriesPage.dart';
 import '../../Controller/HomeScreenController.dart';
@@ -31,12 +36,9 @@ class MainPage extends StatelessWidget {
                   banners: contr.banners,
                   currentIndex: contr.currIndex);
             }),
-        SizedBox(
-          height: 10.h,
-        ),
         GetBuilder<HomeScreenController>(builder: (ctx) {
           return SectionRowHeader(
-            title: 'Popular Categories',
+            title: S.current.PopularCat,
             onTap: () => ctx.onDestenationSelected(1),
           );
         }),
@@ -48,9 +50,9 @@ class MainPage extends StatelessWidget {
           );
         }),
         SectionRowHeader(
-          title: 'Popular Services',
+          title: S.current.PopularSer,
           onTap: () async => await Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => SubCategoriesPage(
+              builder: (context) => ServicesPage(
                     title: 'Resturants',
                   ))),
         ),
@@ -118,7 +120,7 @@ class CustomMainHeader extends StatelessWidget {
                           }).toList(),
                           onChanged: (zone) => cont.onZoneChanged(zone)),
                       const Spacer(),
-                      const NotificationsWidget(),
+                      NotificationsWidget(),
                       IconButton(
                         onPressed: () => Get.to(SettingsPage()),
                         icon: Icon(
@@ -130,6 +132,7 @@ class CustomMainHeader extends StatelessWidget {
                     ],
                   )
                 : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CircleAvatar(
                         child: Image.asset(
@@ -141,7 +144,7 @@ class CustomMainHeader extends StatelessWidget {
                         width: 10.h,
                       ),
                       Text(
-                        'Hi, UserId: 34948456578346',
+                        'UserId: 34948456578346',
                         style: TextStyle(
                             color: MColors.light,
                             fontSize: 12.sp,
@@ -150,22 +153,6 @@ class CustomMainHeader extends StatelessWidget {
                     ],
                   );
           }),
-          if (isHomeScreen)
-            SizedBox(
-              height: 10.h,
-            ),
-          if (isHomeScreen)
-            Text(
-              'Hi, UserId: 34948456578346',
-              style: TextStyle(
-                  color: MColors.light,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w600),
-            ),
-          if (isHomeScreen)
-            SizedBox(
-              height: 15.h,
-            ),
           if (isHomeScreen) SearchWidget()
         ],
       ),

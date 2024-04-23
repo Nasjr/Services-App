@@ -1,15 +1,17 @@
 import 'package:ecommerce_application/features/Home/View/Widgets/MainPage.dart';
+import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: must_be_immutable
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
   List<Widget> changeList = [
     SettingsWidget(
       title: Text(
-        "Change Language",
-        style: TextStyle(fontSize: 12.sp),
+        S.current.ChangLang,
+        style: TextStyle(fontSize: 14.sp),
       ),
       traling: MaterialButton(
         onPressed: () {},
@@ -18,8 +20,8 @@ class SettingsPage extends StatelessWidget {
     ),
     SettingsWidget(
       title: Text(
-        "Change Theme",
-        style: TextStyle(fontSize: 12.sp),
+        S.current.ChangeTheme,
+        style: TextStyle(fontSize: 14.sp),
       ),
       traling: MaterialButton(
         onPressed: () {},
@@ -28,8 +30,8 @@ class SettingsPage extends StatelessWidget {
     ),
     SettingsWidget(
       title: Text(
-        "Upload Categories",
-        style: TextStyle(fontSize: 12.sp),
+        S.current.UploadCat,
+        style: TextStyle(fontSize: 14.sp),
       ),
       traling: MaterialButton(
         onPressed: () {},
@@ -38,8 +40,8 @@ class SettingsPage extends StatelessWidget {
     ),
     SettingsWidget(
       title: Text(
-        "Upload SubCategories",
-        style: TextStyle(fontSize: 12.sp),
+        S.current.UploadSubCat,
+        style: TextStyle(fontSize: 14.sp),
       ),
       traling: MaterialButton(
         onPressed: () {},
@@ -48,8 +50,8 @@ class SettingsPage extends StatelessWidget {
     ),
     SettingsWidget(
       title: Text(
-        "Upload Services",
-        style: TextStyle(fontSize: 12.sp),
+        S.current.UploadService,
+        style: TextStyle(fontSize: 14.sp),
       ),
       traling: MaterialButton(
         onPressed: () {},
@@ -67,10 +69,10 @@ class SettingsPage extends StatelessWidget {
         Container(
             child: Center(
                 child: Text(
-              'Settings',
+              S.current.Settings,
               style: TextStyle(color: Colors.white),
             )),
-            height: 80.h,
+            height: 50.h,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -96,7 +98,10 @@ class SettingsPage extends StatelessWidget {
           padding: EdgeInsets.all(4.0).h,
           child: Container(
             height: 500.h,
-            child: ListView.builder(
+            child: ListView.separated(
+                separatorBuilder: (context, index) => SizedBox(
+                      height: 20.h,
+                    ),
                 itemCount: changeList.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) => changeList[index]),

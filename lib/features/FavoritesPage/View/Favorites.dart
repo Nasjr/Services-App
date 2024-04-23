@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/common/widgets/BrandCard.dart';
+import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class FavoritesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Favorites',
+        title: S.current.Favourites,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

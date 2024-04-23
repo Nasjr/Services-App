@@ -3,8 +3,11 @@ import 'package:ecommerce_application/features/Home/Controller/MainScreenControl
 import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
 import 'package:ecommerce_application/features/SubCategoriesPage/Controller/SubCategoriesController.dart';
 import 'package:ecommerce_application/features/SubCategoriesPage/View/SubCategoriesPage.dart';
+import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../common/widgets/CustomCategoryWidget/CustomCategoryWidget.dart';
 
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({super.key});
@@ -14,7 +17,7 @@ class CategoriesPage extends StatelessWidget {
     Get.lazyPut(() => SubCategoriesController('abc'));
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Categories',
+        title: S.current.Categories,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

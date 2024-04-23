@@ -1,12 +1,19 @@
 import 'package:ecommerce_application/features/Home/model/CategoryModel.dart';
+import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:get/get.dart';
 
 class MainScreenController extends GetxController {
   static MainScreenController get instance => Get.find();
   int currIndex = 0;
-  String currZone = 'All Zones';
-  List<String> zones = ['All Zones', 'Zone 1', 'Zone 2', 'Zone 3'];
+  String currZone = S.current.SelectedZoneAll;
+  List<String> zones = [
+    S.current.SelectedZoneAll,
+    S.current.SelectedZoneOne,
+    S.current.SelectedZoneTwo,
+    S.current.SelectedZoneThree
+  ];
+
   List<String> banners = [MImages.banner5, MImages.banner8, MImages.banner6];
   @override
   void onInit() {
