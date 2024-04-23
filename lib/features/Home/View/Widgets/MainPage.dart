@@ -1,3 +1,5 @@
+import 'package:ecommerce_application/features/Settings/View/Settings.dart';
+import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,75 +22,7 @@ class MainPage extends StatelessWidget {
     return ListView(
       shrinkWrap: true,
       children: [
-        Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomCenter,
-                colors: MHelperFunctions.isDarkMode(context)
-                    ? [
-                        Color.fromARGB(255, 0, 0, 0),
-                        Color.fromARGB(255, 77, 77, 77),
-                      ]
-                    : [
-                        Color.fromARGB(255, 3, 136, 59),
-                        Color.fromARGB(255, 4, 180, 92).withOpacity(0.9),
-                      ],
-              ),
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20.w),
-                  bottomRight: Radius.circular(20.w))),
-          padding:
-              EdgeInsets.only(top: 15.h, bottom: 10.h, left: 15.w, right: 15.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GetBuilder<MainScreenController>(builder: (cont) {
-                return Row(
-                  children: [
-                    CustomDropDown(
-                        value: cont.currZone,
-                        items: cont.zones.map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              'Selected Zone ($value)',
-                              style: TextStyle(
-                                  fontSize: 10.sp, color: MColors.white),
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (zone) => cont.onZoneChanged(zone)),
-                    const Spacer(),
-                    const NotificationsWidget(),
-                    IconButton(
-                      onPressed: () => print('Settings'),
-                      icon: Icon(
-                        Icons.settings,
-                        size: 25.w,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                );
-              }),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                'Hi, UserId: 34948456578346',
-                style: TextStyle(
-                    color: MColors.light,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              SearchWidget()
-            ],
-          ),
-        ),
+        CustomMainHeader(),
         GetBuilder<MainScreenController>(
             id: 'CrouselBuilder',
             builder: (contr) {
@@ -131,6 +65,110 @@ class MainPage extends StatelessWidget {
           }),
         ),
       ],
+    );
+  }
+}
+
+class CustomMainHeader extends StatelessWidget {
+  const CustomMainHeader({
+    super.key,
+    this.isHomeScreen = true,
+  });
+  final bool isHomeScreen;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomCenter,
+            colors: MHelperFunctions.isDarkMode(context)
+                ? [
+                    Color.fromARGB(255, 0, 0, 0),
+                    Color.fromARGB(255, 77, 77, 77),
+                  ]
+                : [
+                    Color.fromARGB(255, 3, 136, 59),
+                    Color.fromARGB(255, 4, 180, 92).withOpacity(0.9),
+                  ],
+          ),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20.w),
+              bottomRight: Radius.circular(20.w))),
+      padding:
+          EdgeInsets.only(top: 15.h, bottom: 10.h, left: 15.w, right: 15.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GetBuilder<MainScreenController>(builder: (cont) {
+            return isHomeScreen
+                ? Row(
+                    children: [
+                      CustomDropDown(
+                          value: cont.currZone,
+                          items: cont.zones.map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                'Selected Zone ($value)',
+                                style: TextStyle(
+                                    fontSize: 10.sp, color: MColors.white),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (zone) => cont.onZoneChanged(zone)),
+                      const Spacer(),
+                      const NotificationsWidget(),
+                      IconButton(
+                        onPressed: () => Get.to(SettingsPage()),
+                        icon: Icon(
+                          Icons.settings,
+                          size: 25.w,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  )
+                : Row(
+                    children: [
+                      CircleAvatar(
+                        child: Image.asset(
+                          MImages.user,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.h,
+                      ),
+                      Text(
+                        'Hi, UserId: 34948456578346',
+                        style: TextStyle(
+                            color: MColors.light,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  );
+          }),
+          if (isHomeScreen)
+            SizedBox(
+              height: 10.h,
+            ),
+          if (isHomeScreen)
+            Text(
+              'Hi, UserId: 34948456578346',
+              style: TextStyle(
+                  color: MColors.light,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600),
+            ),
+          if (isHomeScreen)
+            SizedBox(
+              height: 15.h,
+            ),
+          if (isHomeScreen) SearchWidget()
+        ],
+      ),
     );
   }
 }

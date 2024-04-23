@@ -22,8 +22,8 @@ class OffersPage extends StatelessWidget {
               crossAxisSpacing: 10,
               mainAxisSpacing: 30),
           itemBuilder: (context, index) => CustomCategory(
-            categoryName: "Sea food",
-            imageCategoryPath: MImages.productImage1,
+            categoryName: "Special Offers",
+            imageCategoryPath: MImages.productImage2,
             isNetworkImage: false,
             imageWidth: double.infinity,
             index: index,

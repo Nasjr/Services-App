@@ -11,17 +11,19 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   // Todo: add Widgits Binding
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  print('In Here');
+  FlutterNativeSplash.remove();
   // Todo: Init Local Storage
   await Hive.initFlutter();
   await Hive.openBox(LocalDataSourceBoxs.configBox);
   // Remove the defult splash Screen
 
-  FlutterNativeSplash.remove();
   // Todo: Initialize Firebase
 
   // Todo: Initialize Authentication
-  await Future.delayed(Durations.long3)
+  await Future.delayed(Durations.short1)
       .then((value) => Get.put(AuthenticationRepository()));
   // Initialize UI Setup and colors
 

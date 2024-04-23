@@ -16,7 +16,7 @@ class MAppTheme {
       primaryColor: Colors.blue,
       scaffoldBackgroundColor: Colors.white,
       textTheme: MTextTheme.lighTextTheme,
-      iconTheme: const IconThemeData(color: Colors.white, size: 30),
+      iconTheme: const IconThemeData(color: Colors.black, size: 30),
       chipTheme: MChipTheme.lighChipTheme,
       appBarTheme: MAppBarTheme.lightAppBarTheme,
       checkboxTheme: MCheckboxTheme.lightCheckboxTheme,

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class SplashScreenController extends GetxController {
   Future<void> waitAndRedirectToHomePage() async {
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 3));
     Get.offAll(() => HomeScreen());
   }
 

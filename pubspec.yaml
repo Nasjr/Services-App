@@ -50,6 +50,7 @@ dependencies:
   flutter_screenutil:
   font_awesome_flutter: ^10.7.0
   cached_network_image: ^3.3.1
+  flutter_native_splash: ^2.3.10
 
 
 

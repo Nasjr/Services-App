@@ -2,12 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/features/Home/Controller/HomeScreenController.dart';
 import 'package:ecommerce_application/features/Home/Controller/MainScreenController.dart';
 import 'package:ecommerce_application/features/Home/model/CategoryModel.dart';
+import 'package:ecommerce_application/features/NotificationsPage/View/NotificationsPage.dart';
+import 'package:ecommerce_application/features/ServiceProviderPage/View/ServiceProviderPage.dart';
 import 'package:ecommerce_application/utils/constants/colors.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../../ServicesPage/Model/ServicesModel.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -290,7 +294,7 @@ class NotificationsWidget extends StatelessWidget {
     return Stack(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () => Get.to(NotificationsPage()),
           icon: const Icon(
             Icons.notifications,
             color: MColors.light,
@@ -332,11 +336,14 @@ class CustomDropDown extends StatelessWidget {
   final void Function(String?) onChanged;
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: value,
-      items: items,
-      onChanged: onChanged,
-      dropdownColor: Color.fromARGB(255, 230, 233, 236),
+    return Padding(
+      padding: EdgeInsets.all(10.0.w),
+      child: DropdownButton<String>(
+        value: value,
+        items: items,
+        onChanged: onChanged,
+        dropdownColor: Color.fromARGB(255, 147, 152, 156),
+      ),
     );
   }
 }
@@ -362,7 +369,6 @@ class CustomSearch extends SearchDelegate {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
     return IconButton(
         onPressed: () {
           close(context, null);
@@ -376,7 +382,10 @@ class CustomSearch extends SearchDelegate {
       itemCount: filterlist.length,
       itemBuilder: (context, index) => Container(
         padding: EdgeInsets.all(10.w),
-        child: Text(filterlist[index]),
+        child: Text(
+          filterlist[index],
+          style: TextStyle(color: Colors.black),
+        ),
       ),
     );
   }
@@ -395,6 +404,14 @@ class CustomSearch extends SearchDelegate {
         child: GestureDetector(
           onTap: () {
             print(filterlist[index]);
+            Get.to(() => ServiceProviderPage(
+                servicePorvider: ServicesModel(
+                    parentName: 'parentCategory',
+                    name: '${filterlist[index]}',
+                    phoneNumber: '01153453880',
+                    whatsappNumber: '01153453880',
+                    description:
+                        'description description description description description')));
           },
           child: Card(
             color: MColors.lightContainer,
@@ -402,7 +419,7 @@ class CustomSearch extends SearchDelegate {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 filterlist[index],
-                style: TextStyle(fontSize: 12.w),
+                style: TextStyle(fontSize: 12.w, color: Colors.black),
               ),
             ),
           ),

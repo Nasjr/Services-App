@@ -3,13 +3,13 @@ import 'package:ecommerce_application/features/authentication/Onboarding/views/o
 import 'package:ecommerce_application/features/authentication/splashScreen/splashScreen.dart';
 import 'package:ecommerce_application/utils/constants/local_storage.dart';
 import 'package:ecommerce_application/utils/local_storage/local_storage.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
   @override
   void onReady() {
-    // FlutterNativeSplash.remove();
     screeenRedirect();
     super.onReady();
   }
