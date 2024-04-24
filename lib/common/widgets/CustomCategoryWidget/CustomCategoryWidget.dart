@@ -8,9 +8,9 @@ class CustomCategory extends StatelessWidget {
   const CustomCategory({
     super.key,
     required this.index,
-    this.width = 120,
-    this.height = 140,
-    this.imageWidth = 90,
+    this.width = 160,
+    this.height = 80,
+    this.imageWidth = 100,
     this.imageHeight = 80,
     required this.categoryName,
     required this.imageCategoryPath,
@@ -31,51 +31,53 @@ class CustomCategory extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        width: width,
+        height: height,
         decoration: BoxDecoration(
-            color: MHelperFunctions.isDarkMode(context)
-                ? Color.fromARGB(255, 80, 79, 79)
-                : const Color.fromARGB(255, 214, 212, 212),
-            borderRadius: BorderRadius.circular(20.w)),
-        height: height.h,
-        width: width.w,
-        child: Stack(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.w),
+        ),
+        child: Column(
           children: [
-            ClipRRect(
-              child: isNetworkImage
-                  ? CachedNetworkImage(
-                      imageUrl: imageCategoryPath,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.w),
-                          image: DecorationImage(
+            Flexible(
+              child: ClipRRect(
+                child: isNetworkImage
+                    ? CachedNetworkImage(
+                        imageUrl: imageCategoryPath,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.w),
+                            image: DecorationImage(
                               image: imageProvider,
-                              fit: BoxFit.fitWidth,
-                              colorFilter: ColorFilter.mode(
-                                  Colors.red, BlendMode.colorBurn)),
+                            ),
+                          ),
                         ),
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      )
+                    : Image.asset(
+                        width: imageWidth,
+                        alignment: Alignment.center,
+                        imageCategoryPath,
                       ),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                    )
-                  : Image.asset(
-                      width: imageWidth,
-                      alignment: Alignment.center,
-                      imageCategoryPath,
-                      fit: BoxFit.fitWidth,
-                    ),
+              ),
             ),
-            Padding(
-              padding: categoryNamePadding,
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                child: Text(
-                  '$categoryName',
-                  style: TextStyle(
-                      color: Color.fromARGB(225, 255, 255, 255),
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w800),
-                  textAlign: TextAlign.center,
+            Flexible(
+              child: Padding(
+                padding: categoryNamePadding,
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    '$categoryName',
+                    style: TextStyle(
+                        color: Color.fromARGB(224, 0, 0, 0),
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w800),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),

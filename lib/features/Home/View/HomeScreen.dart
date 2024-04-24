@@ -5,6 +5,7 @@ import 'package:ecommerce_application/features/Home/model/CategoryModel.dart';
 import 'package:ecommerce_application/features/ServiceProviderPage/View/ServiceProviderPage.dart';
 import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/colors.dart';
+import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +28,7 @@ class HomeScreen extends StatelessWidget {
             if (ctx.selectedBottomNavigationBarIndex != 0) {
               ctx.selectedBottomNavigationBarIndex = 0;
               ctx.changeCurrPage();
+              ctx.update();
               return Future.value(false);
             }
             return Future.value(true);
@@ -97,35 +99,33 @@ class HorizontalListView extends StatelessWidget {
   const HorizontalListView({
     super.key,
     this.height,
-    required this.imageWidth,
-    required this.width,
-    required this.categoriesList,
+    this.width = 60,
+    this.imageWidth = 90,
+    required this.servicesList,
   });
   final double? height;
   final double imageWidth;
   final double width;
-  final List<CategoryModel> categoriesList;
+  final List<ServicesModel> servicesList;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      height: 150.0,
+      padding: EdgeInsets.symmetric(horizontal: 25.w),
+      height: 120.0.h,
       child: ListView.separated(
         separatorBuilder: (context, index) => SizedBox(
           width: 10.w,
         ),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: categoriesList.length,
+        itemCount: servicesList.length,
         itemBuilder: (context, index) {
           return GetBuilder<MainScreenController>(builder: (context) {
             return CustomCategory(
-              categoryName: categoriesList[index].name,
-              imageCategoryPath: categoriesList[index].imageUrl,
-              width: width,
-              imageWidth: imageWidth,
-              index: index,
-            );
+                isNetworkImage: false,
+                index: index,
+                categoryName: servicesList[index].name,
+                imageCategoryPath: MImages.productImage1);
           });
         },
       ),
@@ -133,13 +133,12 @@ class HorizontalListView extends StatelessWidget {
   }
 }
 
-class SectionRowHeader extends StatelessWidget {
-  const SectionRowHeader({
+class SectionRowHeader1 extends StatelessWidget {
+  SectionRowHeader1({
     super.key,
-    required this.title,
     this.onTap,
   });
-  final String title;
+
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -148,10 +147,47 @@ class SectionRowHeader extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            title,
+            S.current.PopularCat,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
+          ),
+          const Spacer(),
+          GestureDetector(
+              child: Text(S.current.Seeall,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: MHelperFunctions.isDarkMode(context)
+                        ? Colors.lightBlue
+                        : const Color.fromARGB(255, 1, 103, 187),
+                  )),
+              onTap: onTap),
+        ],
+      ),
+    );
+  }
+}
+
+class SectionRowHeader2 extends StatelessWidget {
+  SectionRowHeader2({
+    super.key,
+    this.onTap,
+  });
+
+  final void Function()? onTap;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.w),
+      child: Row(
+        children: [
+          Text(
+            S.current.PopularSer,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
           ),
           const Spacer(),
           GestureDetector(
@@ -234,7 +270,8 @@ class CustomSearch extends SearchDelegate {
                     phoneNumber: '01153453880',
                     whatsappNumber: '01153453880',
                     description:
-                        'description description description description description')));
+                        'description description description description description',
+                    imagePath: '')));
           },
           child: Card(
             color: MColors.lightContainer,

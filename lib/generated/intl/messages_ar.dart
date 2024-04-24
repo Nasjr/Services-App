@@ -7,8 +7,7 @@
 // ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
-// ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
+// ignore_for_file:unused_import, file_names
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -21,23 +20,26 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "Call": MessageLookupByLibrary.simpleMessage("اتصل"),
-        "Categories": MessageLookupByLibrary.simpleMessage("الفئات"),
-        "ChangLang": MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
-        "ChangeTheme": MessageLookupByLibrary.simpleMessage("تغيير السمة"),
-        "Favourites": MessageLookupByLibrary.simpleMessage("المفضلة"),
-        "Home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
-        "Notifications": MessageLookupByLibrary.simpleMessage("إشعارات"),
-        "Offers": MessageLookupByLibrary.simpleMessage("العروض"),
-        "PopularCat": MessageLookupByLibrary.simpleMessage("الفئات الشهيرة"),
-        "PopularSer": MessageLookupByLibrary.simpleMessage("الخدمات الشهيرة"),
-        "SearchText": MessageLookupByLibrary.simpleMessage("البحث عن الخدمات"),
-        "Seeall": MessageLookupByLibrary.simpleMessage("شاهد الكل"),
-        "Settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
-        "UploadCat": MessageLookupByLibrary.simpleMessage("رفع الفئات"),
-        "UploadService": MessageLookupByLibrary.simpleMessage("الخدمات رفع"),
-        "UploadSubCat":
-            MessageLookupByLibrary.simpleMessage("رفع الفئات الفرعية")
-      };
+  static _notInlinedMessages(_) => <String, Function> {
+    "Call" : MessageLookupByLibrary.simpleMessage("اتصل"),
+    "Categories" : MessageLookupByLibrary.simpleMessage("الفئات"),
+    "ChangLang" : MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
+    "ChangeTheme" : MessageLookupByLibrary.simpleMessage("تغيير السمة"),
+    "Favourites" : MessageLookupByLibrary.simpleMessage("المفضلة"),
+    "Home" : MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "Notifications" : MessageLookupByLibrary.simpleMessage("إشعارات"),
+    "Offers" : MessageLookupByLibrary.simpleMessage("العروض"),
+    "PopularCat" : MessageLookupByLibrary.simpleMessage("الفئات الشهيرة"),
+    "PopularSer" : MessageLookupByLibrary.simpleMessage("الخدمات الشهيرة"),
+    "SearchText" : MessageLookupByLibrary.simpleMessage("البحث عن الخدمات"),
+    "Seeall" : MessageLookupByLibrary.simpleMessage("شاهد الكل"),
+    "SelectedZoneAll" : MessageLookupByLibrary.simpleMessage("كل المناطق"),
+    "SelectedZoneOne" : MessageLookupByLibrary.simpleMessage("المنطقة واحد"),
+    "SelectedZonethree" : MessageLookupByLibrary.simpleMessage("المنطقة ثلاثة"),
+    "SelectedZonetwo" : MessageLookupByLibrary.simpleMessage("المنطقة اثنين"),
+    "Settings" : MessageLookupByLibrary.simpleMessage("الإعدادات"),
+    "UploadCat" : MessageLookupByLibrary.simpleMessage("رفع الفئات"),
+    "UploadService" : MessageLookupByLibrary.simpleMessage("الخدمات رفع"),
+    "UploadSubCat" : MessageLookupByLibrary.simpleMessage("رفع الفئات الفرعية")
+  };
 }

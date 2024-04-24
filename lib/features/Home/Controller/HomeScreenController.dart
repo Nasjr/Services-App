@@ -8,7 +8,6 @@ import '../View/Widgets/MainPage.dart';
 
 class HomeScreenController extends GetxController {
   int selectedBottomNavigationBarIndex = 0;
-  String currZone = 'All Zones';
 
   onDestenationSelected(int index) {
     selectedBottomNavigationBarIndex = index;

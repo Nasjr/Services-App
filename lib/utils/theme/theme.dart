@@ -14,7 +14,7 @@ class MAppTheme {
       fontFamily: 'Poppins',
       brightness: Brightness.light,
       primaryColor: Colors.blue,
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: Color.fromARGB(255, 238, 238, 238),
       textTheme: MTextTheme.lighTextTheme,
       iconTheme: const IconThemeData(color: Colors.black, size: 30),
       chipTheme: MChipTheme.lighChipTheme,

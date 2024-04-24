@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:flutter/foundation.dart';
 
 class ServicesModel {
@@ -13,22 +14,25 @@ class ServicesModel {
   final String phoneNumber;
   final String whatsappNumber;
   final String description;
+  final String imagePath;
 
   ServicesModel(
       {required this.parentName,
       required this.name,
       required this.phoneNumber,
       required this.whatsappNumber,
-      required this.description});
+      required this.description,
+      required this.imagePath});
 
   // from JsonConstructor
   factory ServicesModel.fromJson(Map<String, dynamic> json) {
     return ServicesModel(
-        parentName: json['parentName'],
-        name: json['name'],
-        phoneNumber: json['phoneNumber'],
-        whatsappNumber: json['whatsappNumber'],
-        description: json['description']);
+        parentName: json['parentName'] ?? '',
+        name: json['name'] ?? '',
+        phoneNumber: json['phoneNumber'] ?? '',
+        whatsappNumber: json['whatsappNumber'] ?? '',
+        description: json['description'] ?? '',
+        imagePath: json['imagePath'] ?? MImages.productImage1);
   }
   // To JsonConstructor
   Map<String, dynamic> toJson(ServicesModel model) {
@@ -36,6 +40,7 @@ class ServicesModel {
       'parentName': model.parentName,
       'name': model.name,
       'phoneNumber': model.phoneNumber,
+      'imagePath': model.imagePath,
       'whatsappNumber': model.whatsappNumber,
       'description': model.description,
     };

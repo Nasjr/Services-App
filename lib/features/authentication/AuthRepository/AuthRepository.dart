@@ -8,9 +8,22 @@ import 'package:get/get.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
+  // @override
+  // void onReady() {
+
+  //   super.onReady();
+  // }
   @override
-  void onReady() {
-    screeenRedirect();
+  void onInit() {
+    settingInit();
+    super.onInit();
+  }
+
+  @override
+  void onReady() async {
+    // await Future.delayed(Duration(seconds: 2), () {
+    //   screeenRedirect();
+    // });
     super.onReady();
   }
 
@@ -21,5 +34,14 @@ class AuthenticationRepository extends GetxController {
     AppLocalStorage().readData(LocalDataSourceKeys.isFirstTime) != true
         ? Get.offAll(() => SplashScreen())
         : Get.offAll(() => OnboardingScreen());
+  }
+
+  void settingInit() {
+    if (AppLocalStorage().readData(LocalDataSourceKeys.localization) == null) {
+      AppLocalStorage().saveData(LocalDataSourceKeys.localization, 'ar');
+      print(AppLocalStorage().readData(LocalDataSourceKeys.localization));
+    }
+    AppLocalStorage()
+        .saveData(LocalDataSourceKeys.theme, Get.isDarkMode ? 'dark' : 'light');
   }
 }

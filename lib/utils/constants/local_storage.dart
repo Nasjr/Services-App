@@ -5,7 +5,8 @@ class LocalDataSourceBoxs {
 class LocalDataSourceKeys {
   //=================Config Keys=================
   static const String isFirstTime = "isFirstTime";
-  static const String langCode = "langCode";
+  static const String localization = 'localization';
+  static const String theme = 'theme';
   //=================Auth Keys=================
   static const String token = "jwt_token";
   static const String userData = "UserData";

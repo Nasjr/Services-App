@@ -1,7 +1,9 @@
 import 'package:ecommerce_application/features/authentication/AuthRepository/AuthRepository.dart';
+import 'package:ecommerce_application/features/authentication/Onboarding/views/onboarding.dart';
 import 'package:ecommerce_application/features/authentication/splashScreen/splashScreen.dart';
 import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/local_storage.dart';
+import 'package:ecommerce_application/utils/local_storage/local_storage.dart';
 import 'package:ecommerce_application/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,10 +24,10 @@ void main() async {
   // Remove the defult splash Screen
   FlutterNativeSplash.remove();
   // Todo: Initialize Firebase
-
+  print(AppLocalStorage().readData(LocalDataSourceKeys.isFirstTime, true));
   // Todo: Initialize Authentication
-  await Future.delayed(Durations.short1)
-      .then((value) => Get.put(AuthenticationRepository()));
+  await Future.delayed(Durations.medium2)
+      .then((value) async => await Get.put(AuthenticationRepository()));
   // Initialize UI Setup and colors
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -52,16 +54,20 @@ class App extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-            locale: Locale('ar'),
+            locale: Locale(
+                AppLocalStorage().readData(LocalDataSourceKeys.localization)),
             // customize themes
-            themeMode: ThemeMode.system,
+            themeMode:
+                AppLocalStorage().readData(LocalDataSourceKeys.theme) == 'dark'
+                    ? ThemeMode.dark
+                    : ThemeMode.light,
             theme: MAppTheme.lightTheme,
             debugShowCheckedModeBanner: false,
             darkTheme: MAppTheme.darkTheme,
-            home: Scaffold(
-                body: Center(
-              child: CircularProgressIndicator(),
-            )));
+            home: AppLocalStorage()
+                    .readData(LocalDataSourceKeys.isFirstTime, true)!
+                ? OnboardingScreen()
+                : SplashScreen());
       },
     );
   }

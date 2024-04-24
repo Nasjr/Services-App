@@ -12,9 +12,10 @@ class AppLocalStorage {
     await Hive.box(LocalDataSourceBoxs.configBox).put(key, value);
   }
 
-  T? readData<T>(String key) {
+  T? readData<T>(String key, [T? defult]) {
     print(key);
-    return Hive.box(LocalDataSourceBoxs.configBox).get(key);
+    return Hive.box(LocalDataSourceBoxs.configBox)
+        .get(key, defaultValue: defult);
   }
 
   Future<void> removeData(String key) async {
