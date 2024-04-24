@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
+import 'package:ecommerce_application/features/Home/View/NavigationView.dart';
 import 'package:ecommerce_application/utils/constants/local_storage.dart';
 import 'package:ecommerce_application/utils/local_storage/local_storage.dart';
 import 'package:flutter/material.dart';

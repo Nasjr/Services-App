@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(MainScreenController());
-    final homeController = Get.put(HomeScreenController());
+    Get.put(HomeScreenController());
     return SafeArea(
       child: GetBuilder<HomeScreenController>(builder: (ctx) {
         return WillPopScope(
@@ -95,18 +95,20 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class HorizontalListView extends StatelessWidget {
-  const HorizontalListView({
+class HorizontalListViewWrapContainer extends StatelessWidget {
+  const HorizontalListViewWrapContainer({
     super.key,
     this.height,
     this.width = 60,
     this.imageWidth = 90,
-    required this.servicesList,
+    required this.listLength,
+    required this.itemBuilder,
   });
   final double? height;
   final double imageWidth;
   final double width;
-  final List<ServicesModel> servicesList;
+  final int listLength;
+  final Widget? Function(BuildContext, int) itemBuilder;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -118,16 +120,8 @@ class HorizontalListView extends StatelessWidget {
         ),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: servicesList.length,
-        itemBuilder: (context, index) {
-          return GetBuilder<MainScreenController>(builder: (context) {
-            return CustomCategory(
-                isNetworkImage: false,
-                index: index,
-                categoryName: servicesList[index].name,
-                imageCategoryPath: MImages.productImage1);
-          });
-        },
+        itemCount: listLength,
+        itemBuilder: itemBuilder,
       ),
     );
   }
@@ -143,7 +137,7 @@ class SectionRowHeader1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.w),
       child: Row(
         children: [
           Text(
@@ -202,88 +196,6 @@ class SectionRowHeader2 extends StatelessWidget {
                   )),
               onTap: onTap),
         ],
-      ),
-    );
-  }
-}
-
-class CustomSearch extends SearchDelegate {
-  List<String> suggestions = [
-    'Shabrawy',
-    'Al Wafaa Football',
-    'Al Amal clinic',
-    'Circle K'
-  ];
-  List<String> filterlist = [];
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-          onPressed: () {
-            query = "";
-          },
-          icon: Icon(Icons.close))
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-        onPressed: () {
-          close(context, null);
-        },
-        icon: Icon(Icons.arrow_back));
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return ListView.builder(
-      itemCount: filterlist.length,
-      itemBuilder: (context, index) => Container(
-        padding: EdgeInsets.all(10.w),
-        child: Text(
-          filterlist[index],
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    filterlist = suggestions
-        .where((element) => element.toLowerCase().contains(query.toLowerCase()))
-        .toList();
-    return ListView.builder(
-      itemCount: filterlist.length,
-      itemBuilder: (context, index) => Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 10.w,
-        ),
-        child: GestureDetector(
-          onTap: () {
-            print(filterlist[index]);
-            Get.to(() => ServiceProviderPage(
-                servicePorvider: ServicesModel(
-                    parentName: 'parentCategory',
-                    name: '${filterlist[index]}',
-                    phoneNumber: '01153453880',
-                    whatsappNumber: '01153453880',
-                    description:
-                        'description description description description description',
-                    imagePath: '')));
-          },
-          child: Card(
-            color: MColors.lightContainer,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                filterlist[index],
-                style: TextStyle(fontSize: 12.w, color: Colors.black),
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }

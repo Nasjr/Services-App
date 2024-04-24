@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_application/common/widgets/CustomShapes/CircularContainer.dart';
-import 'package:ecommerce_application/features/Home/View/Widgets/Roundedbanner.dart';
+import 'package:ecommerce_application/features/Home/View/Widgets/RoundedBanner/Roundedbanner.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +38,7 @@ class CustomCarousel extends StatelessWidget {
                   ),
               ],
               options: CarouselOptions(
-                height: 230.h,
+                height: 180.h,
                 aspectRatio: 16 / 9,
                 viewportFraction: 0.8,
                 initialPage: 0,

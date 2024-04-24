@@ -1,9 +1,10 @@
-
-import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
+import 'package:ecommerce_application/features/Home/View/NavigationView.dart';
 import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../features/Home/View/Widgets/CustomSearchDelegate/CustomSearchDelegate.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({
@@ -47,4 +48,3 @@ class SearchWidget extends StatelessWidget {
     );
   }
 }
-

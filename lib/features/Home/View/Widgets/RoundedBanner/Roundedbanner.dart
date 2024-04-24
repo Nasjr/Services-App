@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MRoundedImageWidget extends StatelessWidget {
   const MRoundedImageWidget({
     super.key,
-    this.width,
-    this.height,
+    this.width = 300,
+    this.height = 350,
     required this.imageUrl,
     this.applyRadius = true,
     this.isNetworkImage = false,
@@ -37,6 +37,8 @@ class MRoundedImageWidget extends StatelessWidget {
               ? BorderRadius.circular(borderRadius.w)
               : BorderRadius.zero,
           child: Image(
+            height: height,
+            width: width,
             image: isNetworkImage
                 ? NetworkImage(imageUrl)
                 : AssetImage(imageUrl) as ImageProvider,

@@ -3,7 +3,7 @@ import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../features/Home/View/Widgets/Roundedbanner.dart';
+import '../../features/Home/View/Widgets/RoundedBanner/Roundedbanner.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/sizes.dart';
 

@@ -10,15 +10,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:restart_app/restart_app.dart';
 
+import '../../../common/widgets/CustomHeader/CustomHeader.dart';
+
 // ignore: must_be_immutable
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
   @override
   Widget build(BuildContext context) {
     Get.put(SettingsController());
-    return Scaffold(body: 
-    GetBuilder<SettingsController>
-    (builder: (contr) {
+    return Scaffold(body: GetBuilder<SettingsController>(builder: (contr) {
       return ListView(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
@@ -58,7 +58,6 @@ class SettingsPage extends StatelessWidget {
                           print(AppLocalStorage()
                               .readData(LocalDataSourceKeys.theme));
                           contr.switchTheme();
-                          
                         },
                         child: Text(AppLocalStorage()
                             .readData(LocalDataSourceKeys.theme)),

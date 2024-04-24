@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
+import 'package:ecommerce_application/features/Home/View/NavigationView.dart';
 import 'package:get/get.dart';
 
 class SplashScreenController extends GetxController {

@@ -1,6 +1,6 @@
 import 'package:ecommerce_application/common/widgets/CustomAppBar/CustomAppBar.dart';
 import 'package:ecommerce_application/common/widgets/CustomCategoryWidget/CustomCategoryWidget.dart';
-import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
+import 'package:ecommerce_application/features/Home/View/NavigationView.dart';
 import 'package:ecommerce_application/features/ServicesPage/Controller/ServicesController.dart';
 import 'package:ecommerce_application/features/ServicesPage/View/ServicesPage.dart';
 import 'package:ecommerce_application/features/SubCategoriesPage/Controller/SubCategoriesController.dart';

@@ -1,5 +1,5 @@
 import 'package:ecommerce_application/common/widgets/CustomAppBar/CustomAppBar.dart';
-import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
+import 'package:ecommerce_application/features/Home/View/NavigationView.dart';
 import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/colors.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';

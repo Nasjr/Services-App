@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/features/Home/View/HomeScreen.dart';
+import 'package:ecommerce_application/features/Home/View/NavigationView.dart';
 import 'package:ecommerce_application/features/authentication/Onboarding/views/onboarding.dart';
 import 'package:ecommerce_application/features/authentication/splashScreen/splashScreen.dart';
 import 'package:ecommerce_application/utils/constants/local_storage.dart';
