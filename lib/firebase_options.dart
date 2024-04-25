@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBzgT6qcDJkGI8ShyICQtlLf9VTWaCtw3s',
-    appId: '1:736272055766:android:6a2ab924d4199bf475b877',
+    appId: '1:736272055766:android:8cee0b2cc534c38f75b877',
     messagingSenderId: '736272055766',
     projectId: 'gardiniacityapp',
     storageBucket: 'gardiniacityapp.appspot.com',
@@ -59,10 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAj4VpGdVc__rNEANSXLA9QIAY7UWZz9ik',
-    appId: '1:736272055766:ios:48db08297cb09f0175b877',
+    appId: '1:736272055766:ios:bef6c1619b8e189a75b877',
     messagingSenderId: '736272055766',
     projectId: 'gardiniacityapp',
     storageBucket: 'gardiniacityapp.appspot.com',
-    iosBundleId: 'com.gardenia.services.android',
+    iosBundleId: 'com.gardenia.city.application',
   );
+
 }

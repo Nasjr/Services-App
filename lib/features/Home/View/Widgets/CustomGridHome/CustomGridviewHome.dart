@@ -1,5 +1,8 @@
+import 'package:ecommerce_application/features/CategoriesPage/Model/CategoryModel.dart';
 import 'package:ecommerce_application/features/Home/View/Widgets/MainPage.dart';
 import 'package:ecommerce_application/features/SubCategoriesPage/View/SubCategoriesPage.dart';
+import 'package:ecommerce_application/utils/constants/local_storage.dart';
+import 'package:ecommerce_application/utils/local_storage/local_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -17,9 +20,11 @@ class GridViewHome extends StatelessWidget {
   final double? height;
   final double imageWidth;
   final double width;
-  final List categoriesList;
+  final List<CategoryModel> categoriesList;
   @override
   Widget build(BuildContext context) {
+    final isArabic =
+        AppLocalStorage().readData(LocalDataSourceKeys.localization) == 'ar';
     return Container(
       padding: EdgeInsets.all(15.w),
       alignment: Alignment.center,
@@ -31,10 +36,12 @@ class GridViewHome extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => Get.to(
-                () => SubCategoriesPage(title: categoriesList[index].name)),
+                () => SubCategoriesPage(categoryModel: categoriesList[index])),
             child: CustomWhiteContainer(
-              title: categoriesList[index].name,
-              imageCategoryPath: categoriesList[index].imageUrl,
+              title: isArabic
+                  ? categoriesList[index].nameAR!
+                  : categoriesList[index].name!,
+              imageCategoryPath: categoriesList[index].imageUrl!,
             ),
           );
         },

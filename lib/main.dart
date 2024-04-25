@@ -1,10 +1,12 @@
 import 'package:ecommerce_application/features/authentication/AuthRepository/AuthRepository.dart';
 import 'package:ecommerce_application/features/authentication/Onboarding/views/onboarding.dart';
 import 'package:ecommerce_application/features/authentication/splashScreen/splashScreen.dart';
+import 'package:ecommerce_application/firebase_options.dart';
 import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/local_storage.dart';
 import 'package:ecommerce_application/utils/local_storage/local_storage.dart';
 import 'package:ecommerce_application/utils/theme/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -24,7 +26,9 @@ void main() async {
   // Remove the defult splash Screen
   FlutterNativeSplash.remove();
   // Todo: Initialize Firebase
-  print(AppLocalStorage().readData(LocalDataSourceKeys.isFirstTime, true));
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   // Todo: Initialize Authentication
   await Future.delayed(Durations.medium2)
       .then((value) async => await Get.put(AuthenticationRepository()));

@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ChangeTheme" : MessageLookupByLibrary.simpleMessage("تغيير السمة"),
     "Favourites" : MessageLookupByLibrary.simpleMessage("المفضلة"),
     "Home" : MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "NoItemsFound" : MessageLookupByLibrary.simpleMessage("لم يتم العثور على أي عناصر"),
     "Notifications" : MessageLookupByLibrary.simpleMessage("إشعارات"),
     "Offers" : MessageLookupByLibrary.simpleMessage("العروض"),
     "PopularCat" : MessageLookupByLibrary.simpleMessage("الفئات الشهيرة"),

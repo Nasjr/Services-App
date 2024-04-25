@@ -20,7 +20,7 @@
         </queries>
         <!--#enddocregion android-queries-->
     <application
-        android:label="Gardenia Services"
+        android:label="Gardenia City app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

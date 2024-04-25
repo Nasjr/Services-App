@@ -16,6 +16,7 @@ class CustomWhiteContainer extends StatelessWidget {
   final bool isNetworkImage;
   @override
   Widget build(BuildContext context) {
+    print(title);
     return Container(
       padding: EdgeInsets.all(5.w),
       child: Column(
@@ -40,7 +41,9 @@ class CustomWhiteContainer extends StatelessWidget {
           Flexible(
             child: Text(
               title,
-              style: TextStyle(fontSize: 14.sp),
+              style: TextStyle(
+                fontSize: 12.sp,
+              ),
               textAlign: TextAlign.center,
             ),
           ),

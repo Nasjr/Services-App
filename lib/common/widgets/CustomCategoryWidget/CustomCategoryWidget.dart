@@ -47,12 +47,12 @@ class CustomCategory extends StatelessWidget {
                 child: isNetworkImage
                     ? CachedNetworkImage(
                         imageUrl: imageCategoryPath,
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.w),
-                            image: DecorationImage(
-                              image: imageProvider,
-                            ),
+                        imageBuilder: (context, imageProvider) => Padding(
+                          padding: EdgeInsets.only(top: 10.h),
+                          child: Image(
+                            image: imageProvider,
+                            fit: BoxFit.fitWidth,
+                            alignment: Alignment.center,
                           ),
                         ),
                         placeholder: (context, url) =>
@@ -74,7 +74,7 @@ class CustomCategory extends StatelessWidget {
                   child: Text(
                     '$categoryName',
                     style:
-                        TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w800),
+                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w800),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,

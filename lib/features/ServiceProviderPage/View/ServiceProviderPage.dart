@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/common/widgets/FavouriteIcon.dart';
 import 'package:ecommerce_application/features/ServicesPage/Model/ServicesModel.dart';
 import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
+import 'package:ecommerce_application/utils/constants/local_storage.dart';
+import 'package:ecommerce_application/utils/local_storage/local_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,14 +13,9 @@ import 'package:url_launcher/url_launcher.dart';
 class ServiceProviderPage extends StatelessWidget {
   ServiceProviderPage({super.key, required this.servicePorvider});
   final ServicesModel servicePorvider;
-  String phoneNumber = '01153453880';
-  // Future<void> makePhoneCall(String phoneNumber) async {
-  //   final Uri launchUri = Uri(
-  //     scheme: 'tel',
-  //     path: phoneNumber,
-  //   );
-  //   await launchUrl(launchUri);
-  // }
+  final isNetworkImage = true;
+  final isArabic =
+      AppLocalStorage().readData(LocalDataSourceKeys.localization) == 'ar';
   launch(String url) async {
     Uri convertedUri = Uri.parse(url);
     if (!await launchUrl(convertedUri)) {
@@ -27,7 +25,6 @@ class ServiceProviderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(servicePorvider.name);
     return Scaffold(
         body: Stack(
       alignment: Alignment.bottomCenter,
@@ -57,10 +54,21 @@ class ServiceProviderPage extends StatelessWidget {
                           Colors.black.withOpacity(0.7)
                         ])),
                     child: FlexibleSpaceBar(
-                      background: Image.asset(
-                        MImages.productImage1,
-                        fit: BoxFit.contain,
-                      ),
+                      background: isNetworkImage
+                          ? CachedNetworkImage(
+                              alignment: Alignment.center,
+                              width: 40.w,
+                              height: 30.w,
+                              imageUrl: servicePorvider.imageUrl,
+                              placeholder: (context, url) =>
+                                  CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
+                            )
+                          : ImageIcon(
+                              AssetImage(MImages.productImage1),
+                              size: 30.w,
+                            ),
                     ),
                   ),
                   Positioned(
@@ -82,10 +90,14 @@ class ServiceProviderPage extends StatelessWidget {
                         size: 30.w,
                       )),
                   Positioned(
-                    top: 190.h,
-                    left: 100.w,
+                    top: 150.h,
+                    left: 50.w,
+                    right: 50.w,
                     child: Text(
-                      servicePorvider.name,
+                      isArabic
+                          ? servicePorvider.nameAR
+                          : servicePorvider.nameAR,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 18.sp,
                           color: Colors.white,
@@ -97,6 +109,7 @@ class ServiceProviderPage extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Container(
+                height: 600.h,
                 child: Padding(
                   padding: EdgeInsets.all(10.0.w),
                   child: Column(
@@ -105,7 +118,7 @@ class ServiceProviderPage extends StatelessWidget {
                         height: 20.h,
                       ),
                       Text(
-                        '${servicePorvider.description}  -- What is Lorem Ipsum?Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.',
+                        '${isArabic ? servicePorvider.descriptionAR : servicePorvider.description}',
                         style: TextStyle(color: Colors.black),
                       ),
                     ],
@@ -123,14 +136,14 @@ class ServiceProviderPage extends StatelessWidget {
               title: "Call",
               icon: Icons.call,
               ontap: () {
-                launch("tel://+201153453880".trim());
+                launch("tel://+${servicePorvider.phoneNumber}".trim());
               },
             ),
             ButtomButtton(
               title: 'Whatsapp',
               icon: FontAwesomeIcons.whatsapp,
               ontap: () => launch(
-                  'whatsapp://send?text=sample text&phone=+201153453880'),
+                  'whatsapp://send?text=sample text&phone=+${servicePorvider.whatsappNumber}'),
             ),
           ],
         ),

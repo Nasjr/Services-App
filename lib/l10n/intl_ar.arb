@@ -18,7 +18,8 @@
     "ChangeTheme" : "تغيير السمة",
     "UploadCat" : "رفع الفئات",
     "UploadService" : "الخدمات رفع",
-    "UploadSubCat" : "رفع الفئات الفرعية"
+    "UploadSubCat" : "رفع الفئات الفرعية",
+    "NoItemsFound":"لم يتم العثور على أي عناصر"
   }
   
   

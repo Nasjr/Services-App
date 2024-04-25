@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
 import 'package:flutter/foundation.dart';
 
@@ -9,40 +10,73 @@ class ServicesModel {
   //   "phone_number": "+1-555-1234",
   //   "whatsapp_number": "+1-555-5678"
   // },
-  final String parentName;
+  final String parentSubCategory;
   final String name;
   final String phoneNumber;
   final String whatsappNumber;
   final String description;
-  final String imagePath;
+  final String imageUrl;
+  final String descriptionAR;
+  final String nameAR;
+  final Timestamp updateDate;
+  final bool isFeatured;
 
   ServicesModel(
-      {required this.parentName,
+      {required this.descriptionAR,
+      required this.nameAR,
+      required this.isFeatured,
+      required this.parentSubCategory,
       required this.name,
       required this.phoneNumber,
+      required this.updateDate,
       required this.whatsappNumber,
       required this.description,
-      required this.imagePath});
+      required this.imageUrl});
 
   // from JsonConstructor
   factory ServicesModel.fromJson(Map<String, dynamic> json) {
     return ServicesModel(
-        parentName: json['parentName'] ?? '',
+        parentSubCategory: json['parentSubCategory'] ?? '',
         name: json['name'] ?? '',
         phoneNumber: json['phoneNumber'] ?? '',
         whatsappNumber: json['whatsappNumber'] ?? '',
         description: json['description'] ?? '',
-        imagePath: json['imagePath'] ?? MImages.productImage1);
+        imageUrl: json['imagePath'] ?? MImages.productImage1,
+        descriptionAR: json['descriptionAR'],
+        nameAR: json['nameAR'],
+        isFeatured: json['isFeatured'],
+        updateDate: json['updateDate']);
+  }
+
+  factory ServicesModel.mapFirestoreToCategoryModel(DocumentSnapshot doc) {
+    // Get data from the document
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+
+    // Extract and handle missing fields with default values
+    return ServicesModel(
+        parentSubCategory: doc['parentSubCategory'] ?? '',
+        name: doc['name'] ?? '',
+        phoneNumber: doc['phoneNumber'] ?? '',
+        whatsappNumber: doc['whatsappNumber'] ?? '',
+        description: doc['description'] ?? '',
+        imageUrl: doc['imageUrl'] ?? '',
+        descriptionAR: doc['descriptionAR'] ?? '',
+        nameAR: doc['nameAR'] ?? '',
+        updateDate: doc['updateDate'] ?? Timestamp.now(),
+        isFeatured: doc['isFeatured']);
   }
   // To JsonConstructor
   Map<String, dynamic> toJson(ServicesModel model) {
     return {
-      'parentName': model.parentName,
+      'parentSubCategory': model.parentSubCategory,
       'name': model.name,
       'phoneNumber': model.phoneNumber,
-      'imagePath': model.imagePath,
+      'imageUrl': model.imageUrl,
       'whatsappNumber': model.whatsappNumber,
       'description': model.description,
+      'descriptionAR': descriptionAR,
+      'nameAR': nameAR,
+      'updateDate': updateDate
     };
   }
 }

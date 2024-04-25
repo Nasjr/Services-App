@@ -1,4 +1,6 @@
-import 'package:ecommerce_application/features/Home/model/CategoryModel.dart';
+import 'package:ecommerce_application/features/CategoriesPage/Model/CategoryModel.dart';
+import 'package:ecommerce_application/features/Home/Repository/HomeRepo.dart';
+import 'package:ecommerce_application/features/Home/model/bannersModel.dart';
 import 'package:ecommerce_application/features/ServicesPage/Model/ServicesModel.dart';
 import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/image_strings.dart';
@@ -12,74 +14,10 @@ class MainScreenController extends GetxController {
   late String currZone;
   List<String> zones = [];
   List<String> banners = [MImages.banner5, MImages.banner8, MImages.banner6];
-  final List<ServicesModel> servicesList = [
-    ServicesModel(
-      parentName: "Handyman Services",
-      name: "John's Plumbing",
-      phoneNumber: "+1 (555) 555-1234",
-      whatsappNumber: "+1 (555) 555-5678",
-      description:
-          "Reliable and experienced plumber for all your residential and commercial needs. 24/7 emergency service available.",
-      imagePath: "https://icons8.com/icons/set/plumber",
-    ),
-    ServicesModel(
-      parentName: "Pet Care",
-      name: "Happy Paws Walkers",
-      phoneNumber: "+1 (555) 123-4567",
-      whatsappNumber: "", // Empty string for unavailable whatsapp
-      description:
-          "We provide loving and reliable dog walking services tailored to your pet's needs. Insured and bonded.",
-      imagePath: "https://icons8.com/icons/set/dog-walker",
-    ),
-    ServicesModel(
-      parentName: "Handyman Services",
-      name: "Creative Spark Studios",
-      phoneNumber: "+1 (555) 789-0123",
-      whatsappNumber: "", // Empty string for unavailable whatsapp
-      description:
-          "We create stunning and user-friendly websites that help your business thrive online. Free consultations!",
-      imagePath: "https://icons8.com/icons/set/web-design",
-    ),
-    ServicesModel(
-      parentName: "Fitness & Wellness",
-      name: "Maria's Yoga Flow",
-      phoneNumber: "+1 (555) 345-6789",
-      whatsappNumber: "+1 (555) 345-9876",
-      description:
-          "Experienced yoga instructor offering group classes and private sessions for all levels. Find your inner peace with us!",
-      imagePath: "https://icons8.com/icons/set/yoga",
-    ),
-    ServicesModel(
-      parentName: "Food & Beverages",
-      name: "Delicious Delights Catering",
-      phoneNumber: "+1 (555) 901-2345",
-      whatsappNumber: "", // Empty string for unavailable whatsapp
-      description:
-          "We cater events of all sizes with fresh, delicious, and beautifully presented food. Let us take care of the food so you can enjoy the party!",
-      imagePath: "https://icons8.com/icons/set/food-and-wine",
-    ),
-  ];
-  @override
-  void onInit() {
-    mapCategories();
-    currZone = S.current.SelectedZoneAll;
-    initializeZonesList();
-    super.onInit();
-  }
-
-  void initializeZonesList() {
-    print('Hereeee');
-    zones = AppLocalStorage().readData(LocalDataSourceKeys.localization) == 'ar'
-        ? ["كل المناطق", "المنطقة واحد", "المنطقة اثنين", "المنطقة ثلاثة"]
-        : [
-            'SelectedZone (All)',
-            'SelectedZone (One)',
-            'SelectedZone (Two)',
-            'SelectedZone (Three)'
-          ];
-    currZone = zones[0];
-  }
-
+  List<BannersModel> bannersList = [];
+  List<ServicesModel> featuredServices = [];
+  List<CategoryModel> featuredCategories = [];
+  final homeRepo = Get.put(HomePageRepo());
   final categories = [
     {
       "name": "Restaurants",
@@ -133,6 +71,68 @@ class MainScreenController extends GetxController {
     }
   ];
   List<CategoryModel> categoryList = [];
+
+  bool isLoading = false;
+
+  @override
+  void onInit() {
+    mapCategories();
+    currZone = S.current.SelectedZoneAll;
+    initializeZonesList();
+    fetchFetureadCategories();
+    fetchFetureadServecies();
+    fetchBanners();
+    super.onInit();
+  }
+
+  Future<void> fetchFetureadCategories() async {
+    try {
+      isLoading = true;
+      featuredCategories.assignAll(await homeRepo.getCategoriesFeatured());
+    } catch (e) {
+      print("Herreee 1 $e");
+    } finally {
+      isLoading = false;
+      update();
+    }
+  }
+
+  Future<void> fetchFetureadServecies() async {
+    try {
+      isLoading = true;
+      featuredServices.assignAll(await homeRepo.getServicesFeatured());
+    } catch (e) {
+      print("Herreee 2 $e");
+    } finally {
+      isLoading = false;
+      update();
+    }
+  }
+
+  Future<void> fetchBanners() async {
+    try {
+      isLoading = true;
+      bannersList.assignAll(await homeRepo.getBannersFetured());
+    } catch (e) {
+      print("Herreee 3 $e");
+    } finally {
+      isLoading = false;
+      update(['CrouselBuilder']);
+    }
+  }
+
+  void initializeZonesList() {
+    print('Hereeee');
+    zones = AppLocalStorage().readData(LocalDataSourceKeys.localization) == 'ar'
+        ? ["كل المناطق", "المنطقة واحد", "المنطقة اثنين", "المنطقة ثلاثة"]
+        : [
+            'SelectedZone (All)',
+            'SelectedZone (One)',
+            'SelectedZone (Two)',
+            'SelectedZone (Three)'
+          ];
+    currZone = zones[0];
+  }
 
   void mapCategories() {
     categoryList =

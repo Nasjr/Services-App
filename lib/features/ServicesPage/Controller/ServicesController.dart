@@ -252,7 +252,7 @@ class ServicesContorller extends GetxController {
   void filterDataSrc(String parentName) {
     services = convertedList
         .where((service) =>
-            service.parentName.toLowerCase() == parentName.toLowerCase())
+            service.parentSubCategory.toLowerCase() == parentName.toLowerCase())
         .toList();
   }
 }

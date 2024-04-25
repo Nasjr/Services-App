@@ -5,11 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MRoundedImageWidget extends StatelessWidget {
   const MRoundedImageWidget({
     super.key,
-    this.width = 300,
-    this.height = 350,
+    this.width = 250,
+    this.height = 300,
     required this.imageUrl,
     this.applyRadius = true,
-    this.isNetworkImage = false,
+    this.isNetworkImage = true,
     this.fit = BoxFit.contain,
     this.backgroundColor = Colors.grey,
     this.onPressed,

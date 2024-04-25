@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_application/common/widgets/CustomShapes/CircularContainer.dart';
 import 'package:ecommerce_application/features/Home/View/Widgets/RoundedBanner/Roundedbanner.dart';
+import 'package:ecommerce_application/features/Home/model/bannersModel.dart';
 import 'package:ecommerce_application/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +15,7 @@ class CustomCarousel extends StatelessWidget {
     this.onTap,
   });
 
-  final List<String> banners;
+  final List<BannersModel> banners;
   final int currentIndex;
   final Function(int, CarouselPageChangedReason)? onPageChanged;
   final Function(int)? onTap;
@@ -32,7 +33,7 @@ class CustomCarousel extends StatelessWidget {
                     },
                     child: MRoundedImageWidget(
                       applyRadius: false,
-                      imageUrl: banners[i],
+                      imageUrl: banners[i].imageUrl,
                       border: null,
                     ),
                   ),

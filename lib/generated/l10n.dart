@@ -246,6 +246,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No items Found`
+  String get NoItemsFound {
+    return Intl.message(
+      'No items Found',
+      name: 'NoItemsFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

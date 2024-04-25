@@ -1,29 +1,34 @@
 import 'package:ecommerce_application/common/widgets/CustomAppBar/CustomAppBar.dart';
 import 'package:ecommerce_application/common/widgets/CustomCategoryWidget/CustomCategoryWidget.dart';
+import 'package:ecommerce_application/features/CategoriesPage/Model/CategoryModel.dart';
 import 'package:ecommerce_application/features/Home/View/NavigationView.dart';
 import 'package:ecommerce_application/features/ServicesPage/Controller/ServicesController.dart';
 import 'package:ecommerce_application/features/ServicesPage/View/ServicesPage.dart';
 import 'package:ecommerce_application/features/SubCategoriesPage/Controller/SubCategoriesController.dart';
+import 'package:ecommerce_application/generated/l10n.dart';
+import 'package:ecommerce_application/utils/constants/local_storage.dart';
+import 'package:ecommerce_application/utils/local_storage/local_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SubCategoriesPage extends StatelessWidget {
-  const SubCategoriesPage({super.key, required this.title});
-  final String title;
+  SubCategoriesPage({super.key, required this.categoryModel});
+  final CategoryModel categoryModel;
+  final isArabic =
+      AppLocalStorage().readData(LocalDataSourceKeys.localization) == 'ar';
   @override
   Widget build(BuildContext context) {
-    Get.put(SubCategoriesController(title));
-    Get.put(ServicesContorller('abc'));
+    Get.put(SubCategoriesController(categoryModel.name!));
     return Scaffold(
       appBar: CustomAppBar(
-        title: '$title',
+        title: '${isArabic ? categoryModel.nameAR : categoryModel.name}',
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SubCategoriesController.instace.currSubCategory.isEmpty
             ? Center(
                 child: Text(
-                  'No SubCategories For this Category yet',
+                  S.current.NoItemsFound,
                   textAlign: TextAlign.center,
                 ),
               )

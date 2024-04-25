@@ -1,7 +1,6 @@
 import 'package:ecommerce_application/common/widgets/CustomCategoryWidget/CustomCategoryWidget.dart';
 import 'package:ecommerce_application/features/Home/Controller/HomeScreenController.dart';
 import 'package:ecommerce_application/features/Home/Controller/MainScreenController.dart';
-import 'package:ecommerce_application/features/Home/model/CategoryModel.dart';
 import 'package:ecommerce_application/features/ServiceProviderPage/View/ServiceProviderPage.dart';
 import 'package:ecommerce_application/generated/l10n.dart';
 import 'package:ecommerce_application/utils/constants/colors.dart';

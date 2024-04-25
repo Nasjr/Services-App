@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_application/features/ServiceProviderPage/View/ServiceProviderPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,13 +65,17 @@ class CustomSearch extends SearchDelegate {
             print(filterlist[index]);
             Get.to(() => ServiceProviderPage(
                 servicePorvider: ServicesModel(
-                    parentName: 'parentCategory',
+                    parentSubCategory: 'parentCategory',
                     name: '${filterlist[index]}',
                     phoneNumber: '01153453880',
                     whatsappNumber: '01153453880',
                     description:
                         'description description description description description',
-                    imagePath: '')));
+                    imageUrl: '',
+                    descriptionAR: '',
+                    nameAR: '',
+                    isFeatured: false,
+                    updateDate: Timestamp.now())));
           },
           child: Card(
             color: MColors.lightContainer,
