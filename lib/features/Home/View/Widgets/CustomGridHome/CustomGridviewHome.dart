@@ -21,7 +21,7 @@ class GridViewHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5.w),
+      padding: EdgeInsets.all(15.w),
       alignment: Alignment.center,
       height: 220.0.h,
       child: GridView.builder(

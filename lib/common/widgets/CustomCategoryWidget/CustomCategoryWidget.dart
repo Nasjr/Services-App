@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_application/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -34,7 +35,9 @@ class CustomCategory extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: MHelperFunctions.isDarkMode(context)
+              ? MColors.darkerGrey
+              : MColors.white,
           borderRadius: BorderRadius.circular(10.w),
         ),
         child: Column(
@@ -70,10 +73,8 @@ class CustomCategory extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(
                     '$categoryName',
-                    style: TextStyle(
-                        color: Color.fromARGB(224, 0, 0, 0),
-                        fontSize: 22.sp,
-                        fontWeight: FontWeight.w800),
+                    style:
+                        TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w800),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
