@@ -141,7 +141,11 @@ class MainScreenController extends GetxController {
 
   void onZoneChanged(String? zone) {
     currZone = zone!;
-    AppLocalStorage().saveData("Zone", currZone);
+    for (int i = 0; i < zones.length; i++) {
+      if (zones[i] == currZone) {
+        AppLocalStorage().saveData(LocalDataSourceBoxs.configBox, i);
+      }
+    }
     update();
   }
 

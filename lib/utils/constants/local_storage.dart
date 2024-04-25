@@ -10,6 +10,7 @@ class LocalDataSourceKeys {
   //=================Auth Keys=================
   static const String token = "jwt_token";
   static const String userData = "UserData";
+  static const String zone = "zone";
 
   //=================Settings Keys=================
 }

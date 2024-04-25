@@ -1,5 +1,6 @@
 import 'package:ecommerce_application/common/widgets/CustomAppBar/CustomAppBar.dart';
 import 'package:ecommerce_application/common/widgets/CustomCategoryWidget/CustomCategoryWidget.dart';
+import 'package:ecommerce_application/features/CategoriesPage/Controller/CategoriesController.dart';
 import 'package:ecommerce_application/features/CategoriesPage/Model/CategoryModel.dart';
 import 'package:ecommerce_application/features/Home/View/NavigationView.dart';
 import 'package:ecommerce_application/features/ServicesPage/Controller/ServicesController.dart';
@@ -18,14 +19,14 @@ class SubCategoriesPage extends StatelessWidget {
       AppLocalStorage().readData(LocalDataSourceKeys.localization) == 'ar';
   @override
   Widget build(BuildContext context) {
-    Get.put(SubCategoriesController(categoryModel.name!));
+    Get.lazyPut(() => SubCategoriesController(categoryModel.name!));
     return Scaffold(
       appBar: CustomAppBar(
         title: '${isArabic ? categoryModel.nameAR : categoryModel.name}',
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: SubCategoriesController.instace.currSubCategory.isEmpty
+        child: SubCategoriesController.instace.subCategoriesList.isEmpty
             ? Center(
                 child: Text(
                   S.current.NoItemsFound,
@@ -33,28 +34,34 @@ class SubCategoriesPage extends StatelessWidget {
                 ),
               )
             : GetBuilder<SubCategoriesController>(builder: (ctrl) {
-                return GridView.builder(
-                  itemCount: ctrl.currSubCategory.length,
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 288,
-                      childAspectRatio: 3 / 2,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 40),
-                  itemBuilder: (context, index) => CustomCategory(
-                    categoryName: ctrl.currSubCategory[index].name,
-                    imageCategoryPath: ctrl.currSubCategory[index].imageUrl,
-                    imageWidth: double.infinity,
-                    onTap: () async {
-                      ServicesContorller.instance
-                          .filterDataSrc(ctrl.currSubCategory[index].name);
-                      await Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ServicesPage(
-                                title: ctrl.currSubCategory[index].name,
-                              )));
-                    },
-                    index: index,
-                  ),
-                );
+                return ctrl.isloading == true
+                    ? CircularProgressIndicator()
+                    : ctrl.subCategoriesList.length == 0
+                        ? Center(
+                            child: Text(S.current.NoItemsFound),
+                          )
+                        : GridView.builder(
+                            itemCount: ctrl.subCategoriesList.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                                    maxCrossAxisExtent: 288,
+                                    childAspectRatio: 3 / 2,
+                                    crossAxisSpacing: 20,
+                                    mainAxisSpacing: 40),
+                            itemBuilder: (context, index) => CustomCategory(
+                              categoryName: ctrl.subCategoriesList[index].name!,
+                              imageCategoryPath:
+                                  ctrl.subCategoriesList[index].imageUrl!,
+                              imageWidth: double.infinity,
+                              onTap: () {
+                                Get.to(() => ServicesPage(
+                                      parentSubCategoryName:
+                                          ctrl.subCategoriesList[index].name!,
+                                    ));
+                              },
+                              index: index,
+                            ),
+                          );
               }),
       ),
     );

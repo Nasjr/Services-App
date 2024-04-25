@@ -49,9 +49,6 @@ class CategoriesPage extends StatelessWidget {
                             controller.categoriesList[index].imageUrl!,
                         imageWidth: double.infinity,
                         onTap: () async {
-                          SubCategoriesController.instace
-                              .filterByParentCategory(
-                                  controller.categoriesList[index].name!);
                           Get.to(() => SubCategoriesPage(
                                 categoryModel: controller.categoriesList[index],
                               ));
