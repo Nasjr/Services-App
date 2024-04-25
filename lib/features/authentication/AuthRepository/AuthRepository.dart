@@ -3,19 +3,30 @@ import 'package:ecommerce_application/features/authentication/Onboarding/views/o
 import 'package:ecommerce_application/features/authentication/splashScreen/splashScreen.dart';
 import 'package:ecommerce_application/utils/constants/local_storage.dart';
 import 'package:ecommerce_application/utils/local_storage/local_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
-  // @override
-  // void onReady() {
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
-  //   super.onReady();
-  // }
+  Future<UserCredential?> signInAnonymously() async {
+    try {
+      final userCredential = await auth.signInAnonymously();
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+      print(e.message);
+      return null;
+    }
+  }
+
   @override
-  void onInit() {
+  void onInit() async {
     settingInit();
+    final userId = await signInAnonymously();
+    print(userId!.user?.uid);
     super.onInit();
   }
 
